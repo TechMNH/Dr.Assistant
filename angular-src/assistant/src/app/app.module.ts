@@ -9,10 +9,12 @@ import { DoctorModule } from 'doctor';
 import { PatientsModule } from 'patients';
 import { SignupModule } from 'signup';
 import { UtilityModule } from 'utility';
+import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
