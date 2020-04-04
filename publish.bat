@@ -1,6 +1,6 @@
 cls
 echo off
 cls
-cd build/scripts
+cd build
 node build-publish
 pause
