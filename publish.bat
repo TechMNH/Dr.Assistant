@@ -2,5 +2,5 @@ cls
 echo off
 cls
 cd build
-node build-publish
+node build-deploy
 pause
