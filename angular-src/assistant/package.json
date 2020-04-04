@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --port 4200",
-    "build": "npm run build:admin && npm run build:doctor && npm run build:patients && npm run build:signup && npm run build:utility",
+    "build": "npm run build:utility && npm run build:doctor && npm run build:patients && npm run build:signup && npm run build:admin && ng build assistant",
     "build:admin":"ng build admin",
     "build:doctor":"ng build doctor",
     "build:patients":"ng build patients",
