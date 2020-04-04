@@ -1,0 +1,7 @@
+/*
+ * Public API Surface of signup
+ */
+export * from './lib/signup.service';
+export * from './lib/signup.component';
+export * from './lib/signup.module';
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoicHVibGljLWFwaS5qcyIsInNvdXJjZVJvb3QiOiJuZzovL3NpZ251cC8iLCJzb3VyY2VzIjpbInB1YmxpYy1hcGkudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7O0dBRUc7QUFFSCxjQUFjLHNCQUFzQixDQUFDO0FBQ3JDLGNBQWMsd0JBQXdCLENBQUM7QUFDdkMsY0FBYyxxQkFBcUIsQ0FBQyIsInNvdXJjZXNDb250ZW50IjpbIi8qXG4gKiBQdWJsaWMgQVBJIFN1cmZhY2Ugb2Ygc2lnbnVwXG4gKi9cblxuZXhwb3J0ICogZnJvbSAnLi9saWIvc2lnbnVwLnNlcnZpY2UnO1xuZXhwb3J0ICogZnJvbSAnLi9saWIvc2lnbnVwLmNvbXBvbmVudCc7XG5leHBvcnQgKiBmcm9tICcuL2xpYi9zaWdudXAubW9kdWxlJztcbiJdfQ==
