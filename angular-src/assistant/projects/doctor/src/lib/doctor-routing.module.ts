@@ -6,11 +6,16 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'page1'
+    redirectTo: 'home'
   },
   {
-    path: 'page1',
+    path: 'home',
     component: DoctorComponent
+  },
+  {
+    path: 'prescription',
+    canActivate: [],
+    loadChildren: () => import('./prescription/prescription.module').then(m => m.PrescriptionModule)
   }
 ];
 
