@@ -1,6 +1,6 @@
 cls
 echo off
 cls
-cd build
-node build-deploy
+cd angular-src/assistant
+npm run deploy
 pause

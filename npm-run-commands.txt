@@ -1,0 +1,23 @@
+# Run the entire project
+npm run start
+
+# Serve the entire project
+npm run serve
+
+# Serve a specific library updated
+npm run start:<library>
+
+# Run a specific library with watch
+npm run start:watch:<library>
+
+# Build the entire project
+npm run build
+
+# Build a specific library
+npm run build:<library>
+
+# Build and watch for changes a library
+npm run build:watch:<library>
+
+# Deploy to Firebase
+npm run deploy

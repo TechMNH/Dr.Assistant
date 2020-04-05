@@ -1,0 +1,44 @@
+# Generate a blank workspace
+ng new <my-workspace> --create-application=false
+
+# Generate a workspace with and default application
+ng new <my-workspace>
+
+# Generate a library
+ng g library <library>
+
+# Generate a module in the workspace's default application
+ng g m <module>
+
+# Generate a module with routing in the workspace's default application
+ng g m <module> --routing
+
+# Generate a component in the workspace's default application
+ng g c <component>
+
+# Generate a service in the workspace's default application
+ng g s <service>
+
+# Generate a component inside a module in the workspace's default application
+ng g c <module>/<component>
+
+# Generate a service inside a module in the workspace's default application
+ng g s <module>/<service>
+
+# Generate module inside a library
+ng g m <module> --project=<library>
+
+# Generate module with routing inside a library
+ng g m <module> --routing --project=<library>
+
+# Generate component inside a library
+ng g c <component> --project=<library>
+
+# Generate component inside a module inside a library
+ng g c <module>/<component> --project=<library>
+
+# Generate a service inside the library
+ng g s <service> --project=<library>
+
+# Generate a service inside a module inside the library
+ng g s <module>/<service> --project=<library>
