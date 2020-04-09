@@ -1,0 +1,37 @@
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs'
+import { Http } from '@angular/http';
+import { HttpHeaders } from '@angular/common/http';
+import { environment } from 'src/environments';
+
+@Injectable({
+    providedIn: 'root'
+})
+
+export class <<serviceClassName>> {
+
+    constructor(private http: Http){
+        this.checkForContent();
+    }
+
+    private retries = 1
+    private <<var behaviorSubject>> = new BehaviorSubject(null);
+    readonly <<var observable>> = this.<<var behaviorSubject>>.asObservable();
+
+    <<func serviceMethodName>>(data, header?, url?) {
+        this.<<var behaviorSubject>>.next(data);
+        this.checkForContent(((header) ? header : null),((url) ? url : null));
+    }
+
+    checkForContent(headers?, url?){
+        headers = new HttpHeaders((headers) ? headers : { 'Content-type': 'application/json' });
+        this.<<var observable>>.subscribe(resp=>{
+            if((!resp || resp == '') && this.retries <= <<cont int retries>> && url){
+                this.http.get(url, headers).subscribe(res =>{
+                    this.retries +=1;
+                    this.<<func serviceMethodName>>(res.json());
+                })
+            }
+        })
+    }
+}

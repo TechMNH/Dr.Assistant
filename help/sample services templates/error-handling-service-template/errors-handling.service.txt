@@ -1,0 +1,23 @@
+/**
+* In App Module
+* import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+* import { HttpErrorInterceptor } from './services/http-error-interceptor.service';
+* providers : {provide: HTTP_INTERCEPTORS, useClass: HttpErrorInterceptor, multi: true}
+**/
+
+import { ErrorHandler, Injectable} from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import { throwError } from 'rxjs';
+import { Router, ActivatedRoute } from '@angular/router';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class <<serviceClassName>> implements ErrorHandler{
+
+  constructor(private route:ActivatedRoute,private router:Router) { }
+
+  handleError(error: any) {
+    <<snippet functionBody>>
+ }
+}

@@ -1,0 +1,48 @@
+/**
+* npm i crypto-js
+* In App Module
+* import { HttpClientModule } from '@angular/common/http';
+* import { HttpModule } from '@angular/http';
+* Imports : HttpModule, HttpClientModule
+**/
+
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import * as CryptoJS from 'crypto-js';
+import { HttpHeaders } from '@angular/common/http';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class <<serviceClassName>> {
+
+  const <<var encrypt>>: string = '<<const string encrypt>>';
+
+  constructor(private http: HttpClient) { }
+  
+  <<func getServiceMethodName>>(headers?:any): Observable<any> {
+    const headers = new HttpHeaders((headers) ? headers : { Content-type: application/json });
+    return this.http.get(<<const string url>>, {headers: headers});
+  }
+
+  <<func postServiceMethodName>>(data?:any, headers?:any): Observable<any> {
+    const headers = new HttpHeaders((headers) ? headers : { Content-type: application/json });
+    const encryptedData = (<<var encrypt>>) ? CryptoJS.AES.encrypt(JSON.stringify(data), <<var encrypt>> : data;
+    const body = { data: encryptedData).toString() };
+    return this.http.post(<<const string url>>, body, {headers: headers});
+  }
+
+  <<func putServiceMethodName>>(data?:any, headers?:any): Observable<any> {
+    const headers = new HttpHeaders((headers) ? headers : { Content-type: application/json });
+    const encryptedData = (<<var encrypt>>) ? CryptoJS.AES.encrypt(JSON.stringify(data), <<var encrypt>> : data;
+    const body = { data: encryptedData).toString() };
+    return this.http.put(<<const string url>>, body, {headers: headers});
+  }
+
+  <<func deleteServiceMethodName>>(headers?:any): Observable<any> {
+    const headers = new HttpHeaders((headers) ? headers : { Content-type: application/json });
+    return this.http.delete(<<const string url>>, {headers: headers});
+  }
+}

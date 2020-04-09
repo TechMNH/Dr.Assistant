@@ -1,0 +1,49 @@
+/**
+* npm i angular-user-idle
+* In App Module
+* import { UserIdleModule } from 'angular-user-idle';
+* Imports : UserIdleModule.forRoot({ idle: 60, timeout: 20, ping: 10 })
+**/
+
+import { Injectable } from '@angular/core';
+import { UserIdleService } from 'angular-user-idle';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class <<serviceClassName>> {
+
+    constructor(private userIdle: UserIdleService) { }
+    
+    // method to configure timer 
+    <<func configureTimer>>(idle,timeout,ping){
+        this.userIdle.setConfigValues({
+            idle: idle,
+            timeout: timeout,
+            ping: ping
+        });
+    }
+
+    // method to stop timer
+    <<func stopTimer>>() {
+        this.userIdle.stopTimer();
+    }
+
+    <<func stopWatching>>(){    
+        this.userIdle.stopWatching();
+    }
+
+    <<func startWatching>>() {
+        this.userIdle.startWatching();
+        return this.userIdle.onTimerStart()
+    }
+
+    // method to restart timer
+    <<func restart>>() {
+        this.userIdle.resetTimer();
+    }
+
+    <<func onTimerEnd>>(){
+        return this.userIdle.onTimeout()
+    }
+}

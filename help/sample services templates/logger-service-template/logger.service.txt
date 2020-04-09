@@ -1,0 +1,53 @@
+/**
+* npm i ngx-logger
+* In App Module
+* import { NGXLogger, LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+* Imports : LoggerModule.forRoot({
+                                    serverLoggingUrl: 'http://localhost:4000/serverLog',
+                                    level: NgxLoggerLevel.error, 
+                                    serverLogLevel: NgxLoggerLevel.error, 
+                                    disableConsoleLogging: false
+                                  })
+**/
+
+import { Injectable } from '@angular/core';
+import { NGXLogger } from 'ngx-logger';
+
+@Injectable({
+  providedIn: 'root'
+})
+
+export class <<serviceClassName>> {
+  
+  constructor(private __logger__:NGXLogger) { }
+
+  <<func functionName>>(logLevel:string, logData:string){
+   logLevel = logLevel.toLowerCase()
+    switch (logLevel) {
+      default:
+        this.__logger__.log(logData);
+        break;
+      case 'error':
+        this.__logger__.error(logData);
+        break;
+      case 'debug':
+        this.__logger__.debug(logData);
+        break;
+      case 'trace':
+        this.__logger__.trace(logData);
+        break;
+      case 'info':
+        this.__logger__.info(logData);
+        break;
+      case 'fatal':
+        this.__logger__.fatal(logData);
+        break;
+      case 'log':
+        this.__logger__.log(logData);
+      case 'warn':
+        this.__logger__.warn(logData);
+        break;
+    }
+  }
+
+}
