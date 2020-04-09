@@ -1,0 +1,56 @@
+/**
+* npm i ngx-cookie-service
+* In App Module
+* import { CookieService } from 'ngx-cookie-service';
+* providers : CookieService
+**/
+
+import { Injectable } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
+import * as CryptoJS from 'crypto-js';
+
+@Injectable({
+    providedIn: 'root'
+})
+export class <<serviceClassName>> {
+
+    private key: string = '<<const string encryptKey>>'
+    
+    constructor(private cookieService: CookieService) { }
+    
+    // this method is used to store the data
+    <<func setMethodName>>(key, value) {
+        var encrypt = CryptoJS.AES.encrypt(value, this.key).toString();
+        this.cookieService.set(key,encrypt);
+    }
+
+    // this method is used to retrieve the data
+    <<func getMethodName>>(key){
+        var decrypt = this.cookieService.get(key); 
+        return CryptoJS.AES.decrypt(decrypt, this.key).toString(CryptoJS.enc.Utf8);
+    } 
+
+    // this method is used to delete the data
+    <<func removeMethodName>>(key) {
+        this.cookieService.delete(key);
+    }
+
+    // this method is used to clear the storage
+    <<func clearMethodName>>() {
+        this.cookieService.deleteAll();
+    }
+
+    check(key) {
+        var cookieExists: boolean = this.cookieService.check(key);
+        return cookieExists;
+    }
+
+    getAll() {
+        let data = this.cookieService.getAll();
+        var _this = this;
+        Object.keys(data).forEach(function(keys){
+            data[keys] = _this.<<func getMethodName>>(keys);
+        })
+        return data;
+    }
+}

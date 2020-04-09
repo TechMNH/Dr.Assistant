@@ -1,0 +1,36 @@
+/**
+* npm i ngx-device-detector
+* In App Module
+* import { DeviceDetectorModule } from 'ngx-device-detector';
+* Imports : DeviceDetectorModule.forRoot()
+**/
+
+import { Injectable } from '@angular/core';
+import { DeviceDetectorService } from 'ngx-device-detector';
+@Injectable({
+  providedIn: 'root'
+})
+export class <<serviceClassName>> {
+
+  constructor(private deviceService: DeviceDetectorService) { }
+  
+  // method to show device info
+  <<func deviceInfo>>() {
+    return this.deviceService.getDeviceInfo();
+  }
+  
+  // method to check mobile or not  
+  <<func isMobile>>() {
+    return this.deviceService.isMobile();
+  }
+  
+  // method to check tablet or not
+  <<func isTablet>>() {
+    return this.deviceService.isTablet();
+  }
+  
+  // method to check desktop or not
+  <<func isDesktop>>() {
+    return this.deviceService.isDesktop();
+  }
+}

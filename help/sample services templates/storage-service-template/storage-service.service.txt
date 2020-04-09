@@ -1,0 +1,41 @@
+/**
+* npm i angular-web-storage
+* In App Module
+* import { AngularWebStorageModule } from 'angular-web-storage';
+* Imports : AngularWebStorageModule
+**/
+
+import { Injectable } from '@angular/core';
+import { <<class storageType>> } from 'angular-web-storage';
+import * as CryptoJS from 'crypto-js';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class <<serviceClassName>> {
+    private encryptKey = '<<const string encryptKey>>'
+    
+    constructor(private storageService: <<class storageType>>) { }
+    
+    // this method is used to store the data
+    <<func setMethodName>>(key,value) {
+      var encrypt=CryptoJS.AES.encrypt(value,this.encryptKey).toString();
+      this.storageService.set(key,encrypt);
+    }
+
+    // this method is used to retrieve the data
+    <<func getMethodName>>(key){    
+      var decrypt=this.storageService.get(key); 
+      return CryptoJS.AES.decrypt(decrypt, this.encryptKey).toString(CryptoJS.enc.Utf8);
+    } 
+
+    // this method is used to delete the data
+    <<func removeMethodName>>(key) {
+        this.storageService.remove(key);
+    }
+
+    // this method is used to clear the storage
+    <<func clearMethodName>>() {
+        this.storageService.clear();
+    }
+}

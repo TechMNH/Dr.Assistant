@@ -1,0 +1,30 @@
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class <<serviceClassName>> {
+    private __data: any = { };
+    constructor() { }
+    
+    // this method is used to store the data
+    <<func setMethodName>>(key,value) {
+      this.__data[key] = value;
+    }
+    
+    // this method is used to retrieve the data 
+    <<func getMethodName>>(key){
+      return this.__data[key];
+    } 
+    
+    // this method is used to delete the data
+    <<func removeMethodName>>(key) {
+        delete this.__data[key];
+    }
+    
+    // this method is used to clear the storage
+    <<func clearMethodName>>() {
+        this.__data = { };
+    }
+  
+}

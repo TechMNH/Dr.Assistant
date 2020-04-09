@@ -1,0 +1,24 @@
+import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs'
+
+@Injectable({
+    providedIn: 'root'
+})
+
+export class <<serviceClassName>> {
+
+    private <<var behaviorSubject>> = new BehaviorSubject(null);
+    private readonly <<var observable>> = this.<<behaviorSubject>>.asObservable();
+
+    set data(data) {
+        this.<<var behaviorSubject>>.next(data);
+    }
+
+    get data() {
+        this.<<var behaviorSubject>>.value;
+    }
+
+    <<func serviceMethodName>>() {
+        return this.<<var observable>>;
+    }
+}
