@@ -1,0 +1,38 @@
+git clone <URL>                                                                 to get the clone of a repo to a particular folder
+git checkout <branch_name>                                                      to get the most recent commit from the branch
+git checkout tags/<tag_name>                                                    to get checkout at a specific tag from the repo
+git log --name-only --oneline --grep="<match string>"                           to get the committed files by a given string in comments/message
+git push                                                                        to push the commits to the server    
+git push --set-upstream <branch_name>                                           to set default remote branch for the local branch
+git pull                                                                        to pull the commits from the server
+git add .                                                                       to stage files for commit
+git commit                                                                      to commit files to the local before pushing to the server
+git branch -d <branch_name>                                                     to delete local branch
+git push origin --delete <branch_name>                                          to delete remote branch
+git stash save                                                                  to stash current changes
+git stash pop                                                                   to apply stashed changes
+git log --tags --name-only --oneline --grep="<match string>"                    to get the committed files by a given string in tag name
+git clone --single-branch --branch <branch_name> <remote-repo>                  to clone a specific branch from remote
+
+
+reset the Repository with all history deleted:-
+    git checkout <first commit hash>
+    git rm -r *
+    <create a new file>
+    git add README
+    git commit --amend
+    git push -f
+
+save password for future:-
+    git config --global credential.helper store
+    git pull 
+    <enter password and it gets saved for future refrences>
+
+cherry picking:-
+    git checkout <branch to cherry pick on>
+    git fetch origin –prune
+    git reset –hard origin/<branch to cherry pick on>
+    git branch hotfix/cherry-pick-<branch-name>
+    git checkout hotfix/cherry-pic-<branch-name>
+    git cherry-pick <commitId to be cherry picked>
+    git push --set-upstream origin hotfix/cherry-pick-<branch-name>
