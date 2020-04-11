@@ -1,5 +1,15 @@
 /* You can add global styles to this file, and also import other style files */
 
+:host {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
+    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  font-size: 14px;
+  color: #333;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
 /* Responsive Styles */
 @media screen and (max-width: 767px) {
   .card-container > *:not(.circle-link),
@@ -23,7 +33,7 @@
 
   .card.highlight-card {
     margin-left: 25px !important;
-    width: 65% !important;
+    width: 55% !important;
   }
 }
 
@@ -35,6 +45,6 @@
 
   .card.highlight-card {
     margin-left: 25px !important;
-    width: 65% !important;
+    width: 55% !important;
   }
 }
