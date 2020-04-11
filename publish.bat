@@ -1,6 +1,7 @@
 cls
 echo off
 cls
+git reset --hard
 git fetch origin --prune
 git checkout master
 git pull
