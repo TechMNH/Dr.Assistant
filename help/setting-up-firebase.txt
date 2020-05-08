@@ -1,0 +1,12 @@
+Steps to setup firebase hosting for Anglar:
+
+Step 1: Login to firebase and create a new project
+Step 2: After project is created then go and select where to deploy the app (android, IOS, web)
+Step 3: Web Deployment: Select the domain name you want for your project it will be www.domain-name.web.app
+Step 4: Web Deployment: In Angular install the dependencies @angular/fire and firebase-tools (global)
+Step 5: Web Deployment: Then go to the application and run "firebase login" and give in the creds for login
+Step 6: Web Deployment: Then run "firebase init" and select hosting then select existing project and set it up
+Step 7: Web Deployment: Then setup the hosting for your app
+Step 8: Web Deployment: Then run "ng add @angular/cli" and set up remote connection to your app
+Step 9: Web Deployment: Then change in .firebaserc to the hosting created online
+Step 10: Web Deployment: Then run "ng deploy"
