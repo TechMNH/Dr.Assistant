@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "drassistant-5c854"
+  },
+  "targets": {
+    "drassistant-5c854": {
+      "hosting": {
+        "assistant": [
+          "dr-assistant-web"
+        ]
+      }
+    }
+  }
+}
