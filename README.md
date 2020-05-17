@@ -2,10 +2,10 @@
 
 An Application to manage your patients effectively and efficiently.
 
-website: https://dr-assistant-web.firebaseapp.com/home
+[Website](https://dr-assistant-web.web.app/home)
 
 Contributors:
 
-1. Alokananda Roy
-2. Ritika Misra
-3. Sohrab Azam
+1. [Alokananda Roy](https://github.com/AlokaRoy)
+2. [Ritika Misra](https://github.com/ritikamisra07)
+3. [Sohrab Azam](https://github.com/SohrabAzam)
