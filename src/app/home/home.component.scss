@@ -1,7 +1,11 @@
-@import 'variables';
+@import "variables";
 
 .spacer {
   flex: 1;
+}
+
+.get-started {
+  margin: 25px 10px 25px 40px;
 }
 
 .content {
@@ -93,4 +97,10 @@ a:hover {
 
 .alignment-links {
   margin-left: -14px;
+}
+
+@media screen and (max-width: 575px) {
+  .get-started {
+    margin: 25px 0px 25px 20px;
+  }
 }

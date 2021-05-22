@@ -13,8 +13,8 @@ import { FireAuthService } from './services/fire-auth.service';
 })
 export class UtilityComponent implements OnInit {
 
-  username = 'talk2lurisan@gmail.com'
-  password = '786&*Lurisan'
+  username;
+  password;
   constructor(private authService: FireAuthService) { }
 
   ngOnInit(): void {
