@@ -10,6 +10,8 @@ import { PatientsModule } from './patients/patients.module';
 import { SignupModule } from './signup/signup.module';
 import { UtilityModule } from './utility/utility.module';
 import { HomeComponent } from './home/home.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [

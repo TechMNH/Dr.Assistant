@@ -15,18 +15,15 @@ const routes: Routes = [
   },
   {
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-    canActivate: [FireGuard]
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: 'doctor',
-    loadChildren: () => import('./doctor/doctor.module').then(m => m.DoctorModule),
-    canActivate: [FireGuard]
+    loadChildren: () => import('./doctor/doctor.module').then(m => m.DoctorModule)
   },
   {
     path: 'patients',
-    loadChildren: () => import('./patients/patients.module').then(m => m.PatientsModule),
-    canActivate: [FireGuard]
+    loadChildren: () => import('./patients/patients.module').then(m => m.PatientsModule)
   },
   {
     path: 'signup',
@@ -35,6 +32,11 @@ const routes: Routes = [
   {
     path: 'utility',
     loadChildren: () => import('./utility/utility.module').then(m => m.UtilityModule)
+  },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'home',
   }
 ];
 

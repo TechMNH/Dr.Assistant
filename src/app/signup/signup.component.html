@@ -1,0 +1,67 @@
+<div>
+    <div class="nav nav-tabs">
+        <button class="tablink" (click)="openActiveTab(1)">Sign up as Doctor</button>
+        <button class="tablink" (click)="openActiveTab(2)">Sign up as Patient</button>
+    </div>
+
+    <span *ngIf="activeTab==1" id="doctorTab">
+        This sign up is using Rective Forms Module
+        <div>
+            <form [formGroup]="doctorFormGroup" (submit)="submitDoctorDetails()">
+                <div>
+                    <label>First Name : </label>
+                    <input type="text" name="firstName" placeholder="Enter your first name" formControlName="firstName">
+                </div>
+                <div>
+                    <label>Last Name : </label>
+                    <input type="text" name="lastName" placeholder="Enter your last name" formControlName="lastName">
+                </div>
+                <div>
+                    <label>Licence No.: </label>
+                    <input type="text" name="licence" placeholder="Enter your licence no." formControlName="licence">
+                </div>
+                <div>
+                    <label>Email ID : </label>
+                    <input type="email" name="email" placeholder="Enter your valid email Id" formControlName="emailID">
+                </div>
+                <div>
+                    <label>Password : </label>
+                    <input type="password" name="password" placeholder="Set your password" formControlName="password">
+                </div>
+                <div>
+                    <label>Confirm Password : </label>
+                    <input type="password" name="confirmPassword" placeholder="" formControlName="confirmPassword">
+                </div>
+                <button type="submit" value="Sign Up" >Sign Up</button>
+            </form>
+        </div>
+    </span>
+    <!-- <span *ngIf="activeTab==2" id="patientTab">
+        This sign up is using Template Forms
+        <div>
+            <form #patientSignupData = "ngForm" (submit)="submitPatientDetails()">
+                <div>
+                    <label>First Name : </label>
+                    <input type="text" name="firstName" id="firstName" [(ngModel)]="patientSignupData.firstName" placeholder="Enter your first name" required>
+                </div>
+                <div>
+                    <label>Last Name : </label>
+                    <input type="text" name="lastName" placeholder="Enter your last name" #ngModel>
+                </div>
+                <div>
+                    <label>Email ID : </label>
+                    <input type="email" name="email" placeholder="Enter your valid email Id" #ngModel>
+                </div>
+                <div>
+                    <label>Password : </label>
+                    <input type="password" name="password" placeholder="Set your password" #ngModel>
+                </div>
+                <div>
+                    <label>Confirm Password : </label>
+                    <input type="password" name="confirmPassword" placeholder="" #ngModel>
+                </div>
+                <button type="submit" value="Sign Up" >Sign Up</button>
+            </form>
+        </div>
+    </span> -->
+</div>
