@@ -1,17 +1,27 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AdminComponent } from './admin.component';
+import { RouterModule, Routes } from '@angular/router';
+import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
+import { AdminSigninComponent } from './admin-signin/admin-signin.component';
+import { AdminSignupComponent } from './admin-signup/admin-signup.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'page1'
+    redirectTo: 'signin'
   },
   {
-    path: 'page1',
-    component: AdminComponent
-  }
+    path: 'signin',
+    component: AdminSigninComponent
+  },
+  {
+    path: 'signup',
+    component: AdminSignupComponent
+  },
+  {
+    path: 'dashboard',
+    component: AdminDashboardComponent
+  },
 ];
 
 @NgModule({

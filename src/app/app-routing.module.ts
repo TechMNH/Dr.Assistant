@@ -1,7 +1,5 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { FireGuard } from './utility/services/fire-guard.guard';
+import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
@@ -11,7 +9,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    loadChildren: () => import('./common/common.module').then(m => m.CommonModule)
   },
   {
     path: 'admin',
@@ -22,21 +20,13 @@ const routes: Routes = [
     loadChildren: () => import('./doctor/doctor.module').then(m => m.DoctorModule)
   },
   {
-    path: 'patients',
+    path: 'patient',
     loadChildren: () => import('./patients/patients.module').then(m => m.PatientsModule)
-  },
-  {
-    path: 'signup',
-    loadChildren: () => import('./signup/signup.module').then(m => m.SignupModule)
-  },
-  {
-    path: 'utility',
-    loadChildren: () => import('./utility/utility.module').then(m => m.UtilityModule)
   },
   {
     path: '**',
     pathMatch: 'full',
-    redirectTo: 'home',
+    redirectTo: 'home'
   }
 ];
 

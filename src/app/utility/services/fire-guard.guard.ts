@@ -17,10 +17,10 @@ export class FireGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    if (this.authService.isLoggedIn !== true) {
-      this.router.navigateByUrl('home')
-      return false;
-    }
+    // if (this.authService.isLoggedIn !== true) {
+    //   this.router.navigateByUrl('home')
+    //   return false;
+    // }
     return true;
   }
 

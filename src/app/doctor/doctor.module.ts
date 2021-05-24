@@ -1,19 +1,18 @@
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
-import { DoctorComponent } from './doctor.component';
+import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
 import { DoctorRoutingModule } from './doctor-routing.module';
-import { PrescriptionModule } from './prescription/prescription.module';
-import { SigninComponent } from './signin/signin.component';
+import { DoctorSigninComponent } from './doctor-signin/doctor-signin.component';
+import { DoctorSignupComponent } from './doctor-signup/doctor-signup.component';
+
 
 @NgModule({
-  declarations: [DoctorComponent, SigninComponent],
+  declarations: [DoctorSigninComponent, DoctorSignupComponent, DoctorDashboardComponent],
   imports: [
     FormsModule,
     DoctorRoutingModule,
-    PrescriptionModule,
     ReactiveFormsModule
   ],
-  exports: [DoctorComponent]
+  exports: [DoctorSigninComponent, DoctorSignupComponent]
 })
 export class DoctorModule { }
