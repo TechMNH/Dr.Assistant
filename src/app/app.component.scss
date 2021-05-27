@@ -1,4 +1,4 @@
-@import 'variables';
+@import "variables";
 
 .toolbar {
   position: absolute;
@@ -15,4 +15,40 @@
 
 .toolbar img {
   margin: 0 16px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 4%;
+  width: 100%;
+  font-weight: 600;
+  background-color: $primary-background;
+  color: white;
+}
+
+.footer-text {
+  position: inherit;
+  margin-top: 0.5%;
+  margin-left: 1%;
+}
+
+@media screen and (max-width: 575px) {
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    height: 6%;
+    width: 100%;
+    font-weight: 400;
+    background-color: $primary-background;
+    color: white;
+  }
+  
+  .footer-text {
+    position: inherit;
+    margin-top: 0.6%;
+    margin-left: 25%;
+  } 
 }

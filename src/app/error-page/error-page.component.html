@@ -1,0 +1,104 @@
+<div class="error-page-full" *ngIf="randomError <= 5">
+  <section class="page_404">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 ">
+          <div class="col-sm-10 col-sm-offset-1  text-center">
+            <div class="four_zero_four_bg">
+              <h1 class="text-center error-text">Notice</h1>
+              <!-- <h1 class="text-center error-text">Error</h1> -->
+            </div>
+            <div class="contant_box_404">
+              <h3 class="h2">
+                Look like you're early
+                <!-- Look like you're lost -->
+              </h3>
+              <p>The page you are looking for not available YET!</p>
+              <!-- <p>The doctor you are looking for is not available</p>
+              <a class="link_404" (click)="redirectTo('home')">Go to Home</a> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+
+<div class="error-page-full" *ngIf="randomError > 5 && randomError <= 10">
+  <div class="text">
+    <p>Building</p>
+    <!-- <p>Error</p> -->
+  </div>
+  <div class="container-cavemen" (click)="redirectTo('home')">
+    <!-- caveman left -->
+    <div class="caveman">
+      <div class="leg">
+        <div class="foot">
+          <div class="fingers"></div>
+        </div>
+      </div>
+      <div class="leg">
+        <div class="foot">
+          <div class="fingers"></div>
+        </div>
+      </div>
+      <div class="shape">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="head">
+        <div class="eye">
+          <div class="nose"></div>
+        </div>
+        <div class="mouth"></div>
+      </div>
+      <div class="arm-right">
+        <div class="club"></div>
+      </div>
+    </div>
+    <!-- caveman right -->
+    <div class="caveman">
+      <div class="leg">
+        <div class="foot">
+          <div class="fingers"></div>
+        </div>
+      </div>
+      <div class="leg">
+        <div class="foot">
+          <div class="fingers"></div>
+        </div>
+      </div>
+      <div class="shape">
+        <div class="circle"></div>
+        <div class="circle"></div>
+      </div>
+      <div class="head">
+        <div class="eye">
+          <div class="nose"></div>
+        </div>
+        <div class="mouth"></div>
+      </div>
+      <div class="arm-right">
+        <div class="club"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="error-page-full" *ngIf="randomError > 10">
+  <div class="site">
+    <div class="sketch">
+      <div class="bee-sketch red"></div>
+      <div class="bee-sketch blue"></div>
+    </div>
+
+    <h1 class="doctor-error">Notice:
+      <small>Site Under Construction</small>
+    </h1>
+
+    <!-- <h1 class="doctor-error">Error:
+      <small>Doctor Not Found</small>
+    </h1> -->
+  </div>
+</div>
