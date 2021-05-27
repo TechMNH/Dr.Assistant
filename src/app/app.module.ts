@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CommonModule } from './common/common.module';
 import { DoctorModule } from './doctor/doctor.module';
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { PatientsModule } from './patients/patients.module';
 import { UtilityModule } from './utility/utility.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
