@@ -44,7 +44,13 @@
   margin-top: -70px;
 }
 
-/* Cavemen error page */
+@media screen and (max-width: 575px) {
+  .four_zero_four_bg{
+    margin-top: -5%;
+  }
+}
+
+/************************************* Cavemen error page ********************************************/
 
 @mixin position {
   position: absolute;
