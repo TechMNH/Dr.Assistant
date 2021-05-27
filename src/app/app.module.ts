@@ -1,20 +1,19 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AdminModule } from './admin/admin.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
-import { AdminModule } from './admin/admin.module';
+import { CommonModule } from './common/common.module';
 import { DoctorModule } from './doctor/doctor.module';
+import { ErrorPageComponent } from './error-page/error-page.component';
 import { PatientsModule } from './patients/patients.module';
-import { SignupModule } from './signup/signup.module';
 import { UtilityModule } from './utility/utility.module';
-import { HomeComponent } from './home/home.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    ErrorPageComponent
   ],
   imports: [
     BrowserModule,
@@ -23,8 +22,8 @@ import { HomeComponent } from './home/home.component';
     AdminModule,
     DoctorModule,
     PatientsModule,
-    SignupModule,
-    UtilityModule
+    UtilityModule,
+    CommonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

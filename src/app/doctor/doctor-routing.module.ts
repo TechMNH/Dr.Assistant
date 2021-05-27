@@ -1,21 +1,27 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { DoctorComponent } from './doctor.component';
+import { RouterModule, Routes } from '@angular/router';
+import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
+import { DoctorSigninComponent } from './doctor-signin/doctor-signin.component';
+import { DoctorSignupComponent } from './doctor-signup/doctor-signup.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home'
+    redirectTo: 'signin'
   },
   {
-    path: 'home',
-    component: DoctorComponent
+    path: 'signin',
+    component: DoctorSigninComponent
   },
   {
-    path: 'prescription',
-    loadChildren: './prescription/prescription.module#PrescriptionModule'
-  }
+    path: 'signup',
+    component: DoctorSignupComponent
+  },
+  {
+    path: 'dashboard',
+    component: DoctorDashboardComponent
+  },
 ];
 
 @NgModule({

@@ -1,17 +1,27 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { PatientsComponent } from './patients.component';
+import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
+import { PatientSigninComponent } from './patient-signin/patient-signin.component';
+import { PatientSignupComponent } from './patient-signup/patient-signup.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'home'
+    redirectTo: 'signin'
   },
   {
-    path: 'home',
-    component: PatientsComponent
-  }
+    path: 'signin',
+    component: PatientSigninComponent
+  },
+  {
+    path: 'signup',
+    component: PatientSignupComponent
+  },
+  {
+    path: 'dashboard',
+    component: PatientDashboardComponent
+  },
 ];
 
 @NgModule({

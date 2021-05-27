@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-import { UtilityComponent } from './utility.component';
-import { UtilityRoutingModule } from './utility-routing.module';
 import { FireAuthService } from './services/fire-auth.service';
 import { FormsModule } from '@angular/forms';
 import { AngularFireAuthModule } from "@angular/fire/auth";
@@ -9,7 +7,6 @@ import { AngularFireModule } from '@angular/fire';
 
 
 @NgModule({
-  declarations: [UtilityComponent],
   imports: [
     FormsModule,
     AngularFireModule.initializeApp({
@@ -23,10 +20,8 @@ import { AngularFireModule } from '@angular/fire';
       measurementId: "G-2S594WL943"
     }),
     AngularFireAuthModule,
-    AngularFirestoreModule,
-    UtilityRoutingModule
+    AngularFirestoreModule
   ],
-  providers: [FireAuthService],
-  exports: [UtilityComponent]
+  providers: [FireAuthService]
 })
 export class UtilityModule { }

@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { FireGuard } from './utility/services/fire-guard.guard';
+import { RouterModule, Routes } from '@angular/router';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 const routes: Routes = [
   {
@@ -11,30 +10,28 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    component: HomeComponent
+    component: ErrorPageComponent
+  },
+  {
+    path: 'home2',
+    loadChildren: () => import('./common/common.module').then(m => m.CommonModule)
   },
   {
     path: 'admin',
-    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-    canActivate: [FireGuard]
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
   },
   {
     path: 'doctor',
-    loadChildren: () => import('./doctor/doctor.module').then(m => m.DoctorModule),
-    canActivate: [FireGuard]
+    loadChildren: () => import('./doctor/doctor.module').then(m => m.DoctorModule)
   },
   {
-    path: 'patients',
-    loadChildren: () => import('./patients/patients.module').then(m => m.PatientsModule),
-    canActivate: [FireGuard]
+    path: 'patient',
+    loadChildren: () => import('./patients/patients.module').then(m => m.PatientsModule)
   },
   {
-    path: 'signup',
-    loadChildren: () => import('./signup/signup.module').then(m => m.SignupModule)
-  },
-  {
-    path: 'utility',
-    loadChildren: () => import('./utility/utility.module').then(m => m.UtilityModule)
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'home'
   }
 ];
 
