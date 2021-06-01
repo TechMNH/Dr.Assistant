@@ -1,6 +1,8 @@
+export type UserTypes = 'doc' | 'pat' | 'admin' | 'guest';
+
 export class UniqueId {
     id: number;
-    type: 'doc' | 'pat' | 'admin' | 'guest';
+    type: UserTypes;
 }
 
 export class Address {
@@ -9,11 +11,14 @@ export class Address {
     addressLine3: string;
     landmark: string;
     pinCode: number;
+    city: string;
+    state: string;
+    country: string;
 }
 
 export class Password {
     password: string;
-    reset: boolean = false;
+    resetRequired: boolean = false;
     compromised: boolean = false;
     strength: 'strong' | 'medium' | 'weak';
 }
@@ -35,6 +40,7 @@ export class IdentificationDetails {
     firstName: string;
     middleName: string;
     lastName: string;
+    dob: Date;
     address: Address;
     phoneNumber: number;
     password: Password;

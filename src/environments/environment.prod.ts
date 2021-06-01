@@ -2,7 +2,7 @@ export const environment = {
   production: true,
   firebase: {
     apiKey: "AIzaSyAPq5bNLMQnODJYfCAOfnFvsNa8_ZznYpE",
-    authDomain: "drassistant-5c854.firebaseapp.com",
+    authDomain: "dr-assistant-web.web.app",
     databaseURL: "https://drassistant-5c854.firebaseio.com",
     projectId: "drassistant-5c854",
     storageBucket: "drassistant-5c854.appspot.com",

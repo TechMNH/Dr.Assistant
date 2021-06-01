@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'signin'
+    redirectTo: 'signup'
   },
   {
     path: 'signin',

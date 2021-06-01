@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FireAuthService } from 'src/app/utility/services/fire-auth.service';
 
 @Component({
   selector: 'app-admin-signup',
@@ -7,9 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AdminSignupComponent implements OnInit {
 
-  constructor() { }
+  constructor(private fireAuthService: FireAuthService) { }
 
   ngOnInit(): void {
   }
 
+  fbLogin() {
+    this.fireAuthService.FacebookLogin().then(data => {
+      console.log(data);
+    }).catch(err => {
+      console.log(err);
+    });
+  }
 }
