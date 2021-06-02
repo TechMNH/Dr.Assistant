@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ErrorPageComponent } from '../common/error-page/error-page.component';
+import { DoctorGuard } from '../utility/services/fire-guard.guard';
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
 import { DoctorSigninComponent } from './doctor-signin/doctor-signin.component';
 import { DoctorSignupComponent } from './doctor-signup/doctor-signup.component';
@@ -20,8 +22,14 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: DoctorDashboardComponent
+    component: DoctorDashboardComponent,
+    canActivate: [DoctorGuard]
   },
+  {
+    path: '**',
+    pathMatch: 'full',
+    component: ErrorPageComponent
+  }
 ];
 
 @NgModule({

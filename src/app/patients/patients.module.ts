@@ -3,12 +3,14 @@ import { PatientsRoutingModule } from './patients-routing.module';
 import { PatientSigninComponent } from './patient-signin/patient-signin.component';
 import { PatientSignupComponent } from './patient-signup/patient-signup.component';
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
+import { FormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [PatientSigninComponent, PatientSignupComponent, PatientDashboardComponent],
   imports: [
-    PatientsRoutingModule
+    PatientsRoutingModule,
+    FormsModule
   ],
   exports: [PatientSigninComponent, PatientSignupComponent]
 })

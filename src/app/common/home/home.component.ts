@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { trigger, state, style, transition, animate } from "@angular/animations";
 import { Router } from '@angular/router';
+import { DataService } from 'src/app/utility/services/data.service';
 
 @Component({
   selector: 'app-home',
@@ -15,13 +16,10 @@ import { Router } from '@angular/router';
   ]
 })
 export class HomeComponent implements OnInit {
-
-  title = 'Dr. Assistant';
-
-  constructor(private router: Router) { }
-
+  constructor(private router: Router, private dataService: DataService) { }
 
   ngOnInit(): void {
+    this.dataService.resetProfile
   }
 
   redirectTo(project) {
