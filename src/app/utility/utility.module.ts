@@ -5,6 +5,10 @@ import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from 'src/environments/environment';
+import { LoggerModule, NgxLoggerLevel } from 'ngx-logger';
+import { CookieService } from 'ngx-cookie-service';
+import { HttpClientModule } from '@angular/common/http';
+import { FireDatabase } from './services/fire-db.service';
 
 
 @NgModule({
@@ -12,8 +16,15 @@ import { environment } from 'src/environments/environment';
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    HttpClientModule,
+    LoggerModule.forRoot({
+      serverLoggingUrl: 'http://localhost:4000/serverLog',
+      level: NgxLoggerLevel.ERROR,
+      serverLogLevel: NgxLoggerLevel.ERROR,
+      disableConsoleLogging: false
+    })
   ],
-  providers: [FireAuthService]
+  providers: [FireAuthService, CookieService, FireDatabase]
 })
 export class UtilityModule { }

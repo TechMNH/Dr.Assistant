@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   declarations: [AdminSigninComponent, AdminSignupComponent, AdminDashboardComponent],
   imports: [
     AdminRoutingModule,
-    FormsModule,
+    FormsModule
   ],
   exports: [AdminSigninComponent, AdminSignupComponent]
 })

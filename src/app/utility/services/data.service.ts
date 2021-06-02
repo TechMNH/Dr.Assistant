@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
-import { BehaviorSubject, Observable } from "rxjs";
+import { BehaviorSubject, combineLatest, Observable } from "rxjs";
+import { map } from 'rxjs/operators';
 import { AdminProfile } from "src/app/models/admin.model";
 import { DoctorProfile } from "src/app/models/doctor.model";
 import { GuestProfile } from "src/app/models/guest.model";
@@ -9,7 +10,7 @@ export type AllProfile = { doc?: DoctorProfile, pat?: PatientProfile, guest?: Gu
 export type AnyProfile = DoctorProfile | AdminProfile | PatientProfile | GuestProfile;
 
 @Injectable({
-    providedIn: 'any'
+    providedIn: 'root'
 })
 
 export class DataService {
@@ -71,19 +72,30 @@ export class DataService {
         return this.adminOB;
     };
 
-    get allProfile(): AllProfile {
-        return Object.entries({
-            'doc': this.doctorProfile,
-            'pat': this.patientProfile,
-            'guest': this.guestProfile,
-            'admin': this.adminProfile
-        }).reduce((a, [k, v]) => (v == null ? a : (a[k] = v, a)), {});
+    get anyProfile(): Observable<AnyProfile> {
+        return combineLatest([
+            this.adminProfileAsObservable,
+            this.doctorProfileAsObservable,
+            this.patientProfileAsObservable,
+            this.guestProfileAsObservable
+        ]).pipe(map(([adminProfile, doctorProfile, patientProfile, guestProfile]) => {
+            if (adminProfile)
+                return adminProfile
+            else if (doctorProfile)
+                return doctorProfile
+            else if (patientProfile)
+                return patientProfile
+            else if (guestProfile)
+                return guestProfile
+            return null
+        }));
     }
 
-    set resetProfile(data: null) {
+    get resetProfile(): void {
         this.adminProfile = null;
         this.doctorProfile = null;
         this.patientProfile = null;
         this.guestProfile = null;
+        return null;
     }
 }

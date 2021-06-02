@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
 import { DoctorRoutingModule } from './doctor-routing.module';
 import { DoctorSigninComponent } from './doctor-signin/doctor-signin.component';
@@ -11,7 +11,7 @@ import { DoctorSignupComponent } from './doctor-signup/doctor-signup.component';
   imports: [
     FormsModule,
     DoctorRoutingModule,
-    ReactiveFormsModule
+    FormsModule
   ],
   exports: [DoctorSigninComponent, DoctorSignupComponent]
 })
