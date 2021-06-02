@@ -1,126 +1,106 @@
-import { Injectable, NgZone } from '@angular/core';
-import { DoctorProfile } from '../../models/doctor.model';
-import { auth } from 'firebase/app';
-import { AngularFireAuth } from "@angular/fire/auth";
-import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
+import { Injectable } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/auth';
+import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
+import * as firebase from 'firebase/app';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
+import { UserTypes } from 'src/app/models/common.model';
+import { AnyProfile, DataService } from './data.service';
+import { FireDatabase } from './fire-db.service';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class FireAuthService {
-  userData: any; // Save logged in user data
   loggedIn = false;
 
-  // constructor(
-  //   public afs: AngularFirestore,   // Inject Firestore service
-  //   public afAuth: AngularFireAuth, // Inject Firebase auth service
-  //   public router: Router,
-  //   public ngZone: NgZone // NgZone service to remove outside scope warning
-  // ) {
-  //   /* Saving user data in localstorage when
-  //   logged in and setting up null when logged out */
-  //   this.afAuth.authState.subscribe(user => {
-  //     if (user) {
-  //       this.userData = user;
-  //       localStorage.setItem('doctor', JSON.stringify(this.userData));
-  //       JSON.parse(localStorage.getItem('doctor'));
-  //     } else {
-  //       localStorage.setItem('doctor', null);
-  //       JSON.parse(localStorage.getItem('doctor'));
-  //     }
-  //   })
-  // }
+  constructor(
+    private afs: AngularFirestore,   // Inject Firestore service
+    private afAuth: AngularFireAuth, // Required for running services cannot be removed
+    private router: Router,
+    private dataService: DataService,
+    private FireDatabase: FireDatabase // firebase database things
+  ) { }
 
   // Sign in with email/password
-  // SignIn(email, password) {
-  //   return this.afAuth.signInWithEmailAndPassword(email, password)
-  //     .then((result) => {
-  //       this.router.navigateByUrl('dash');
-  //       this.SetUserData(result.user);
-  //     }).catch((error) => {
-  //       window.alert(error.message)
-  //     })
-  // }
+  public BasicSignIn(email: string, password: string, type: UserTypes): Promise<AnyProfile> {
+    return new Promise((resolve, reject) => {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(data => {
+          this.FireDatabase
+            .getUser(data.user.uid, type)
+            .subscribe(data => resolve(data as AnyProfile));
+        })
+        .catch(err => reject(err));
+    });
+  }
 
-  // Sign up with email/password
-  // SignUp(email, password) {
-  //   return this.afAuth.createUserWithEmailAndPassword(email, password)
-  //     .then((result) => {
-  //       /* Call the SendVerificaitonMail() function when new user sign
-  //       up and returns promise */
-  //       // this.SendVerificationMail();
-  //       this.SetUserData(result.user);
-  //     }).catch((error) => {
-  //       window.alert(error.message)
-  //     })
-  // }
+  // Sign up with email/password 
+  public BasicSignUp(email: string, password: string): Promise<firebase.auth.UserCredential> {
+    return firebase.auth().createUserWithEmailAndPassword(email, password);
+  }
 
-  // Send email verfificaiton when new user sign up
-  // SendVerificationMail() {
-  //   return this.afAuth()
-  //   .then(() => {
-  //     this.router.navigate(['verify-email-address']);
-  //   })
-  // }
+  // 3rd party authentication
+  private AuthUsingExternalApp(provider: firebase.auth.FacebookAuthProvider | firebase.auth.GoogleAuthProvider, type: 'popup' | 'redirect' = 'popup'): Promise<void> {
+    if (type == 'redirect')
+      return new Promise<any>((resolve, reject) => {
+        firebase.auth().signInWithRedirect(provider);
+        firebase
+          .auth()
+          .getRedirectResult()
+          .then(res => resolve(res)).catch(err => reject(err))
+      });
+    else (type == 'popup')
+    return new Promise<any>((resolve, reject) => {
+      firebase.auth().signInWithRedirect(provider);
+      firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(res => resolve(res)).catch(err => reject(err))
+    });
+  }
 
-  // Reset Forggot password
-  // ForgotPassword(passwordResetEmail) {
-  //   return this.afAuth.sendPasswordResetEmail(passwordResetEmail)
-  //     .then(() => {
-  //       window.alert('Password reset email sent, check your inbox.');
-  //     }).catch((error) => {
-  //       window.alert(error)
-  //     })
-  // }
+  // fb authentication
+  public FacebookLogin(): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      let provider = new firebase.auth.FacebookAuthProvider();
+      this.AuthUsingExternalApp(provider)
+        .then(res => resolve(res)).catch(err => reject(err))
+    })
+  }
 
-  // Returns true when user is looged in and email is verified
-  // get isLoggedIn(): boolean {
-  //   const user = JSON.parse(localStorage.getItem('doctor'));
-  //   return (user !== null && user.emailVerified !== false) ? true : false;
-  // }
+  // google authentication
+  public GoogleLogin(): Promise<any> {
+    return new Promise<any>((resolve, reject) => {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      this.AuthUsingExternalApp(provider)
+        .then(res => resolve(res)).catch(err => reject(err))
+    })
+  }
 
-  // Sign in with Google
-  // GoogleAuth() {
-  //   return this.AuthLogin(new auth.GoogleAuthProvider());
-  // }
-
-  // Auth logic to run auth providers
-  // AuthLogin(provider) {
-  //   return this.afAuth.signInWithPopup(provider)
-  //     .then((result) => {
-  //       this.ngZone.run(() => {
-  //         this.router.navigate(['dashboard']);
-  //       })
-  //       this.SetUserData(result.user);
-  //     }).catch((error) => {
-  //       window.alert(error)
-  //     })
-  // }
-
-  /* Setting up user data when sign in with username/password,
-  sign up with username/password and sign in with social auth
-  provider in Firestore database using AngularFirestore + AngularFirestoreDocument service */
-  // SetUserData(user) {
-  //   const userRef: AngularFirestoreDocument<any> = this.afs.doc(`users/${user.uid}`);
-  //   const userData: DoctorProfile = {
-  //     uid: user.uid,
-  //     email: user.email,
-  //     displayName: user.displayName,
-  //     emailVerified: user.emailVerified
-  //   }
-  //   console.log(userData);
-  //   return userRef.set(userData, {
-  //     merge: true
-  //   })
-  // }
+  get isLoggedIn(): Observable<{ loggedIn: boolean, type: UserTypes }> {
+    return this.dataService.anyProfile.pipe(map(profile => {
+      if (profile) {
+        const type: UserTypes = (profile['identificationDetails']) ? profile['identificationDetails']['uid']['type'] : null;
+        const guestType: UserTypes = (profile['uid']) ? profile['uid']['type'] : null;
+        return {
+          loggedIn: true,
+          type: type ? type : guestType
+        }
+      }
+      else return { loggedIn: false, type: null }
+    }));
+  }
 
   // Sign out
-  // SignOut() {
-  //   return this.afAuth.signOut().then(() => {
-  //     localStorage.removeItem('doctor');
-  //     this.router.navigate(['sign-in']);
-  //   })
-  // }
+  public SignOut(): Promise<void> {
+    return firebase.auth().signOut().then(() => {
+      this.dataService.resetProfile;
+      this.router.navigateByUrl('/home');
+    })
+  }
 }

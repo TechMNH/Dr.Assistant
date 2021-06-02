@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ErrorPageComponent } from '../common/error-page/error-page.component';
+import { AdminGuard } from '../utility/services/fire-guard.guard';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminSigninComponent } from './admin-signin/admin-signin.component';
 import { AdminSignupComponent } from './admin-signup/admin-signup.component';
@@ -20,8 +22,14 @@ const routes: Routes = [
   },
   {
     path: 'dashboard',
-    component: AdminDashboardComponent
+    component: AdminDashboardComponent,
+    canActivate: [AdminGuard]
   },
+  {
+    path: '**',
+    pathMatch: 'full',
+    component: ErrorPageComponent
+  }
 ];
 
 @NgModule({
