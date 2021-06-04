@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ErrorPageComponent } from './common/error-page/error-page.component';
+import { ErrorPageComponent } from './base/error-page/error-page.component';
 
 const routes: Routes = [
   {
@@ -14,7 +14,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    loadChildren: () => import('./common/common.module').then(m => m.CommonModule)
+    loadChildren: () => import('./base/base.module').then(m => m.BaseModule)
   },
   {
     path: 'admin',

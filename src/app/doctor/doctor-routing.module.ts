@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ErrorPageComponent } from '../common/error-page/error-page.component';
+import { ErrorPageComponent } from '../base/error-page/error-page.component';
 import { DoctorGuard } from '../utility/services/fire-guard.guard';
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
 import { DoctorSigninComponent } from './doctor-signin/doctor-signin.component';

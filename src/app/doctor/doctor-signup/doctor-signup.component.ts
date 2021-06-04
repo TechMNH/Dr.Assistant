@@ -46,11 +46,7 @@ export class DoctorSignupComponent implements OnInit {
         this.router.navigateByUrl('/doctor/dashboard');
       }).catch(err => this.loggerService.log(err, 'error'))
     } else {
-      console.log('Password Mismatch')
+      this.loggerService.log(`Password Mismatch: ${this.doctorProfile.identificationDetails.email}`, 'error')
     }
-  }
-
-  redirectTo(project) {
-    this.router.navigateByUrl('/' + project);
   }
 }

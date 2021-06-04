@@ -21,9 +21,4 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.dataService.resetProfile
   }
-
-  redirectTo(project) {
-    this.router.navigateByUrl('/' + project);
-  }
-
 }

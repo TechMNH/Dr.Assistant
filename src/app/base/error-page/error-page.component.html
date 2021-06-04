@@ -10,7 +10,7 @@
             <div class="contant_box_404">
               <h3 class="h2">{{errorDescription1}}</h3>
               <p>{{errorDescription2}}</p>
-              <a class="link_404" (click)="redirectTo('home')" *ngIf="showHomeButton">Go to Home</a>
+              <a class="link_404" [routerLink]="['/']" *ngIf="showHomeButton">Go to Home</a>
             </div>
           </div>
         </div>
@@ -20,12 +20,12 @@
 </div>
 
 
-<div class="error-page-full cavemen" *ngIf="randomError > 5 && randomError <= 10">
+<div class="error-page-full cavemen"  [routerLink]="['/']" style="cursor: pointer;" *ngIf="randomError > 5 && randomError <= 10">
   <div>
     <p class="text">{{errorTitle}}</p>
     <p class="description">{{errorDescription1}}</p>
   </div>
-  <div class="container-cavemen" (click)="redirectTo('home')">
+  <div class="container-cavemen">
     <!-- caveman left -->
     <div class="caveman">
       <div class="leg">
@@ -89,7 +89,7 @@
     </div>
     <h1 class="doctor-error">{{errorTitle}}
       <small>{{errorDescription3}}</small>
-      <a class="link_404" (click)="redirectTo('home')" *ngIf="showHomeButton">Go to Home</a>
+      <a class="link_404" [routerLink]="['/']" *ngIf="showHomeButton">Go to Home</a>
     </h1>
   </div>
 </div>

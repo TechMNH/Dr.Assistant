@@ -1,15 +1,15 @@
 <!-- <div>
-    <button (click)="fbLogin()" class="btn btn-primary">FB Login</button>
+    <button (click)="fbLogin()" class="btn btn-primary">FB Signin/button>
 </div>
 <div style="margin-top: 5px;">
-    <button (click)="googleLogin()" class="btn btn-primary">Google Login</button>
+    <button (click)="googleLogin()" class="btn btn-primary">Google Signin/button>
 </div>
 <div style="margin-top: 5px;">
     <button (click)="emailSignup()" class="btn btn-primary">Email Signup</button>
 </div>
 
 <div style="margin-top: 5px;">
-    <button (click)="emailSignin()" class="btn btn-primary">Email Login</button>
+    <button (click)="emailSignin()" class="btn btn-primary">Email Signin/button>
 </div> -->
 
 <div class="sign-up signup-form">
@@ -31,8 +31,6 @@
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                 <input type="text" class="form-control" name="displayname" placeholder="Display Name" required="required"
                     [(ngModel)]="adminProfile.identificationDetails.displayName">
-                <input type="text" class="form-control" name="username" placeholder="User Name" required="required"
-                    [(ngModel)]="adminProfile.identificationDetails.username">
             </div>
         </div>
         <div class="form-group">
@@ -66,7 +64,7 @@
         </div>
         <div class="form-group">
             <button class="btn btn-primary btn-lg" (click)="emailSignup()">Sign Up</button>
-            <button class="btn btn-primary btn-lg" (click)="redirectTo('admin/signin')">Sign In</button>
+            <button class="btn btn-primary btn-lg" [routerLink]="['../signin']">Sign In</button>
         </div>
     </form>
 </div>

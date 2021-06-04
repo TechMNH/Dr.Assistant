@@ -55,11 +55,7 @@ export class AdminSignupComponent implements OnInit {
         this.router.navigateByUrl('/admin/dashboard');
       }).catch(err => this.loggerService.log(err, 'error'))
     } else {
-      console.log('Password Mismatch')
+      this.loggerService.log(`Password Mismatch: ${this.adminProfile.identificationDetails.email}`, 'error')
     }
-  }
-
-  redirectTo(project) {
-    this.router.navigateByUrl('/' + project);
   }
 }
