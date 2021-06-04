@@ -37,7 +37,7 @@ export class IdentificationDetails {
     uid: UniqueId = new UniqueId();
     email: string = null;
     displayName: string = null;
-    username: string = null;
+    // username: string = null;
     emailVerified: boolean;
     firstName: string = null;
     middleName: string = null;

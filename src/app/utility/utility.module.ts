@@ -19,7 +19,7 @@ import { FireDatabase } from './services/fire-db.service';
     AngularFirestoreModule,
     HttpClientModule,
     LoggerModule.forRoot({
-      serverLoggingUrl: 'http://localhost:4000/serverLog',
+      serverLoggingUrl: 'http://localhost:4200/error',
       level: NgxLoggerLevel.ERROR,
       serverLogLevel: NgxLoggerLevel.ERROR,
       disableConsoleLogging: false

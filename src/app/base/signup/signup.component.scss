@@ -20,8 +20,10 @@
 .card-container {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  flex-direction: column;
   margin-top: 16px;
+  margin-left: 25px;
+  height: 100%;
 }
 
 .card {
@@ -53,13 +55,13 @@
   cursor: pointer;
 }
 
-.card-container .card:not(.highlight-card):hover {
-  transform: translateY(-3px);
-  box-shadow: 0 4px 17px rgba(black, 0.35);
-}
-
 .card-container .card:not(.highlight-card):hover .material-icons path {
   fill: rgb(105, 103, 103);
+}
+
+.big-svg {
+  padding-bottom: 10px;
+  margin-left: 10px;
 }
 
 .card.highlight-card {
@@ -76,6 +78,28 @@
   margin-left: 60px;
 }
 
+.height,
+.col-lg-6 {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.col-lg-6 button {
+  cursor: pointer;
+  border: none !important;
+  outline: 0 !important;
+}
+
+.col-lg-6 button:hover {
+  transform: translateY(-5px);
+  // box-shadow: 0 4px 17px rgb(0 0 0 / 35%);
+}
+
+.row {
+  padding-bottom: 30px;
+}
+
 svg#rocket-smoke {
   height: calc(100vh - 95px);
   position: absolute;
@@ -84,23 +108,68 @@ svg#rocket-smoke {
   z-index: -10;
 }
 
-a,
-a:visited,
-a:hover {
+.card-container button {
   color: $primary-font;
-  text-decoration: none;
 }
 
-a:hover {
-  color: $primary-font;
+.card-container > button:hover {
+  color: $secondary-font;
 }
 
 .alignment-links {
   margin-left: -14px;
 }
 
+/* Responsive Styles */
+@media screen and (max-width: 767px) {
+  .card-container > *:not(.circle-link),
+  .terminal {
+    width: 100%;
+  }
+
+  .card:not(.highlight-card) {
+    height: 16px;
+    margin: 8px 0;
+  }
+
+  .card.highlight-card span {
+    margin-left: 72px;
+  }
+
+  svg#rocket-smoke {
+    right: 120px;
+    transform: rotate(-5deg);
+  }
+
+  .card.highlight-card {
+    margin-left: 25px !important;
+  }
+}
+
 @media screen and (max-width: 575px) {
+  svg#rocket-smoke {
+    display: none;
+    visibility: hidden;
+  }
+
   .get-started {
     margin: 25px 0px 25px 20px;
+  }
+
+  .card.highlight-card {
+    min-width: 80%;
+  }
+
+  .height {
+    display: none;
+  }
+
+  .big-svg {
+    max-height: 80px;
+  }
+
+  .row,
+  .col-sm-3 {
+    padding-bottom: 15px;
   }
 }

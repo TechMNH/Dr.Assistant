@@ -48,8 +48,4 @@ export class PatientSigninComponent implements OnInit {
         this.router.navigateByUrl('/patient/dashboard');
       }).catch(err => this.loggerService.log(err, 'error'))
   }
-
-  redirectTo(project) {
-    this.router.navigateByUrl('/' + project);
-  }
 }
