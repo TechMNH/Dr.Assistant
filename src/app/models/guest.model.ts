@@ -6,6 +6,6 @@ export class GuestProfile {
     fullName: string = null;
     email: string = null;
     phoneNumber: number = null;
-    password: Password = null;
+    password: Password = new Password();
     ailment: AilmentDescription = new AilmentDescription();
 }

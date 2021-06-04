@@ -55,11 +55,7 @@ export class PatientSignupComponent implements OnInit {
         }).catch(err => this.loggerService.log(err, 'error'));
       }).catch(err => this.loggerService.log(err, 'error'))
     } else {
-      console.log('Password Mismatch')
+      this.loggerService.log(`Password Mismatch: ${this.patientProfile.identificationDetails.email}`, 'error')
     }
-  }
-
-  redirectTo(project) {
-    this.router.navigateByUrl('/' + project);
   }
 }

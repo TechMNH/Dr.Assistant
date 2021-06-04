@@ -47,8 +47,4 @@ export class AdminSigninComponent implements OnInit {
         this.router.navigateByUrl('admin/dashboard');
       }).catch(err => this.loggerService.log(err, 'error'))
   }
-
-  redirectTo(project) {
-    this.router.navigateByUrl('/' + project);
-  }
 }
