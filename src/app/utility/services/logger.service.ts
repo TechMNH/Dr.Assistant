@@ -2,16 +2,20 @@ import { Injectable } from '@angular/core';
 import { NGXLogger } from 'ngx-logger';
 import { environment } from 'src/environments/environment';
 
+export type LogLevel = 'error' | 'debug' | 'trace' | 'info' | 'fatal' | 'log' | 'warn';
+
 @Injectable({
   providedIn: 'root'
 })
-
 export class LoggerService {
 
   constructor(private __logger__: NGXLogger) { }
 
-  log(logData: string, logLevel: string = environment.defaultLogLevel) {
-    logLevel = logLevel.toLowerCase();
+  log(logData: any, logLevel: string = environment.defaultLogLevel, enableConsoleLog: boolean = true) {
+    if (enableConsoleLog) {
+      console.log(logData);
+    }
+    logData = JSON.stringify(logData);
     switch (logLevel) {
       default:
         this.__logger__.log(logData, new Date());

@@ -1,6 +1,9 @@
-export type UserTypes = 'doc' | 'pat' | 'admin' | 'guest';
+export type UserTypes = 'doc' | 'pat' | 'admin' | 'super-admin' | 'guest';
 
 export class UniqueId {
+    constructor(type: UserTypes = 'pat') {
+        this.type = type;
+    }
     id: string = null;
     type: UserTypes = null;
 }
@@ -16,11 +19,13 @@ export class Address {
     country: string = null;
 }
 
+export type PasswordStrength = 'strong' | 'medium' | 'weak';
+
 export class Password {
     password: string = null;
     resetRequired: boolean = false;
     compromised: boolean = false;
-    strength: 'strong' | 'medium' | 'weak' = 'weak';
+    strength: PasswordStrength = 'weak';
     lastChanged: Date = null;
 }
 
@@ -34,7 +39,10 @@ export class Rating {
 }
 
 export class IdentificationDetails {
-    uid: UniqueId = new UniqueId();
+    constructor(type: UserTypes) {
+        this.uid = new UniqueId(type)
+    }
+    uid: UniqueId = null;
     email: string = null;
     displayName: string = null;
     // username: string = null;

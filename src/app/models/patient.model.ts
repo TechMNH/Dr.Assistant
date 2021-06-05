@@ -19,7 +19,7 @@ export class PatientAilmentDetails {
 }
 
 export class PatientProfile {
-    identificationDetails: IdentificationDetails = new IdentificationDetails();
+    identificationDetails: IdentificationDetails = new IdentificationDetails('pat');
     patientAilmentDetails: [PatientAilmentDetails] = [new PatientAilmentDetails()];
     shareMedicalHistoryWithDoctor: boolean = true;
     shareHistoryNumberWithDoctor: number = null;

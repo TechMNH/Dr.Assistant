@@ -6,7 +6,8 @@ import * as firebase from 'firebase/app';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserTypes } from 'src/app/models/common.model';
-import { AnyProfile, DataService } from './data.service';
+import { GuestProfile } from 'src/app/models/guest.model';
+import { AnyButGuestProfile, DataService } from './data.service';
 import { FireDatabase } from './fire-db.service';
 
 @Injectable({
@@ -25,7 +26,7 @@ export class FireAuthService {
   ) { }
 
   // Sign in with email/password
-  public BasicSignIn(email: string, password: string, type: UserTypes): Promise<AnyProfile> {
+  public BasicSignIn(email: string, password: string, type: UserTypes): Promise<AnyButGuestProfile> {
     return new Promise((resolve, reject) => {
       firebase
         .auth()
@@ -33,7 +34,21 @@ export class FireAuthService {
         .then(data => {
           this.FireDatabase
             .getUser(data.user.uid, type)
-            .subscribe(data => resolve(data as AnyProfile));
+            .subscribe(data => resolve(data as AnyButGuestProfile));
+        })
+        .catch(err => reject(err));
+    });
+  }
+
+  public BasicGuestSignIn(email: string, password: string, type: UserTypes): Promise<GuestProfile> {
+    return new Promise((resolve, reject) => {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(email, password)
+        .then(data => {
+          this.FireDatabase
+            .getUser(data.user.uid, type)
+            .subscribe(data => resolve(data as GuestProfile));
         })
         .catch(err => reject(err));
     });

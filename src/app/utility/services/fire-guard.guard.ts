@@ -12,7 +12,8 @@ export class AdminGuard implements CanActivate {
 
   constructor(
     public authService: FireAuthService,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+    private router: Router
   ) { }
 
   canActivate(
@@ -21,7 +22,10 @@ export class AdminGuard implements CanActivate {
     return this.authService.isLoggedIn.pipe(map(status => {
       this.loggerService.log(JSON.stringify(status), 'info');
       if (status.loggedIn && status.type == 'admin') return true;
-      else return false;
+      else {
+        this.router.navigateByUrl('/home');
+        return false
+      };
     }))
   }
 
@@ -34,7 +38,8 @@ export class DoctorGuard implements CanActivate {
 
   constructor(
     public authService: FireAuthService,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+    private router: Router
   ) { }
 
   canActivate(
@@ -43,7 +48,10 @@ export class DoctorGuard implements CanActivate {
     return this.authService.isLoggedIn.pipe(map(status => {
       this.loggerService.log(JSON.stringify(status), 'info');
       if (status.loggedIn && status.type == 'doc') return true;
-      else return false;
+      else {
+        this.router.navigateByUrl('/home');
+        return false
+      };
     }))
   }
 
@@ -56,7 +64,8 @@ export class PatientGuard implements CanActivate {
 
   constructor(
     public authService: FireAuthService,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+    private router: Router
   ) { }
 
   canActivate(
@@ -65,7 +74,10 @@ export class PatientGuard implements CanActivate {
     return this.authService.isLoggedIn.pipe(map(status => {
       this.loggerService.log(JSON.stringify(status), 'info');
       if (status.loggedIn && status.type == 'pat') return true;
-      else return false;
+      else {
+        this.router.navigateByUrl('/home');
+        return false
+      };
     }))
   }
 
@@ -78,7 +90,8 @@ export class GuestGuard implements CanActivate {
 
   constructor(
     public authService: FireAuthService,
-    private loggerService: LoggerService
+    private loggerService: LoggerService,
+    private router: Router
   ) { }
 
   canActivate(
@@ -87,7 +100,10 @@ export class GuestGuard implements CanActivate {
     return this.authService.isLoggedIn.pipe(map(status => {
       this.loggerService.log(JSON.stringify(status), 'info');
       if (status.loggedIn && status.type == 'guest') return true;
-      else return false;
+      else {
+        this.router.navigateByUrl('/home');
+        return false
+      };
     }))
   }
 
