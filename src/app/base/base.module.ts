@@ -6,11 +6,12 @@ import { MedicineComponent } from './medicine/medicine.component';
 import { BaseRoutingModule } from './base-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
+import { SigninComponent } from './signin/signin.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, SignupComponent, MedicineComponent, DashboardComponent],
+  declarations: [HomeComponent, SignupComponent, MedicineComponent, DashboardComponent, SigninComponent],
   imports: [
     CommonModule,
     BaseRoutingModule,

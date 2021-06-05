@@ -29,8 +29,8 @@
         <div class="form-group">
             <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                <input type="text" class="form-control" name="displayname" placeholder="Display Name" required="required"
-                    [(ngModel)]="patientProfile.identificationDetails.displayName">
+                <input type="text" class="form-control" name="displayname" placeholder="Display Name"
+                    required="required" [(ngModel)]="patientProfile.identificationDetails.displayName">
             </div>
         </div>
         <div class="form-group">
@@ -63,8 +63,10 @@
                     Use &amp; Privacy Policy</a></label>
         </div>
         <div class="form-group">
-            <button class="btn btn-primary btn-lg" (click)="emailSignup()">Sign Up</button>
-            <button class="btn btn-primary btn-lg" [routerLink]="['../signin']">Sign In</button>
+            <button class="btn btn-primary btn-lg"
+                (click)="signUpService.basicEmailSignup(patientProfile,confirmPassword)">Sign Up</button>
+            <button class="btn btn-primary btn-lg" (click)="signUpService.navigateByUrl('/patient/signin')">Sign
+                In</button>
         </div>
     </form>
 </div>

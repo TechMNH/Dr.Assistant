@@ -3,7 +3,7 @@ import { IdentificationDetails } from "./common.model";
 export type AdminControls = 'full' | 'maintanance' | 'medical';
 
 export class AdminProfile {
-    identificationDetails: IdentificationDetails = new IdentificationDetails();
+    identificationDetails: IdentificationDetails = new IdentificationDetails('admin');
     controlType: AdminControls = null;
     canRemoveData: boolean = false;
     canAddMedicine: boolean = false;
@@ -11,6 +11,5 @@ export class AdminProfile {
 }
 
 export class SuperAdmin {
-    identificationDetails: IdentificationDetails = new IdentificationDetails();
-    static readonly type: string = 'superAdmin';
+    identificationDetails: IdentificationDetails = new IdentificationDetails('super-admin');
 }

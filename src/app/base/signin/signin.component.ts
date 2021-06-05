@@ -1,11 +1,11 @@
-import { animate, state, style, transition, trigger } from '@angular/animations';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
 import { SigninService } from 'src/app/utility/services/signin.service';
 
 @Component({
-  selector: 'app-patient-signin',
-  templateUrl: './patient-signin.component.html',
-  styleUrls: ['./patient-signin.component.scss'],
+  selector: 'app-signin',
+  templateUrl: './signin.component.html',
+  styleUrls: ['./signin.component.scss'],
   animations: [
     trigger("simpleFadeAnimation", [
       state("in", style({ opacity: 1 })),
@@ -14,14 +14,13 @@ import { SigninService } from 'src/app/utility/services/signin.service';
     ])
   ]
 })
-export class PatientSigninComponent implements OnInit {
-
+export class SigninComponent implements OnInit {
 
   public email: string = null;
   public password: string = null;
-
   constructor(public signInService: SigninService) { }
 
   ngOnInit(): void {
   }
+
 }

@@ -12,7 +12,7 @@ export class DoctorDegree {
 }
 
 export class DoctorProfile {
-    identificationDetails: IdentificationDetails = new IdentificationDetails();
+    identificationDetails: IdentificationDetails = new IdentificationDetails('doc');
     degree: [DoctorDegree] = [new DoctorDegree()];
     yearsOfExperience: number = null;
     bio: string = null;
