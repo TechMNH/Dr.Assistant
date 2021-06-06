@@ -17,7 +17,8 @@ export const environment = {
   DB: {
     'drassistant-5c854': '1jF7wuXhqzSJ7l93ZteC5LUPVQfHXzAUHchfR84e'
   },
-  defaultLogLevel: 'error'
+  defaultLogLevel: 'error',
+  enableConsoleLog: true
 };
 
 /*

@@ -46,12 +46,12 @@ export class SignupService {
         this.dataService.guestProfile = profile;
         this.dataService.userType = Constants.USER_TYPE_GUEST;
         this.fireDatabase.createNewGuestUser(profile).then(() => {
-          this.loggerService.log(`${data.user.uid}-added to database as guest`, 'info');
-        }).catch(err => this.loggerService.log(err, 'error'));
+          this.loggerService.log(`${data.user.uid}-added to database as guest`, Constants.LOG_LEVEL_INFO);
+        }).catch(err => this.loggerService.log(err,Constants.LOG_LEVEL_ERROR));
         this.navigateByUrl(dashboard);
-      }).catch(err => this.loggerService.log(err, 'error'))
+      }).catch(err => this.loggerService.log(err,Constants.LOG_LEVEL_ERROR))
     } else {
-      this.loggerService.log(`Password Mismatch: ${profile.email}`, 'error');
+      this.loggerService.log(`Password Mismatch: ${profile.email}`,Constants.LOG_LEVEL_ERROR);
     }
   }
 
@@ -84,7 +84,7 @@ export class SignupService {
         }).catch(err => this.loggerService.log(err, Constants.LOG_LEVEL_ERROR));
       }).catch(err => this.loggerService.log(err, Constants.LOG_LEVEL_ERROR))
     } else {
-      this.loggerService.log(`Password Mismatch: ${profile.identificationDetails.email}`, Constants.LOG_LEVEL_INFO)
+      this.loggerService.log(`Password Mismatch: ${profile.identificationDetails.email}`, Constants.LOG_LEVEL_ERROR)
     }
   }
 }

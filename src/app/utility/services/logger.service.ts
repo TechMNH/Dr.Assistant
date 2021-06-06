@@ -11,7 +11,7 @@ export class LoggerService {
 
   constructor(private __logger__: NGXLogger) { }
 
-  log(logData: any, logLevel: string = environment.defaultLogLevel, enableConsoleLog: boolean = true) {
+  log(logData: any, logLevel: string = environment.defaultLogLevel, enableConsoleLog: boolean = environment.enableConsoleLog) {
     if (enableConsoleLog) {
       console.log(logData);
     }
