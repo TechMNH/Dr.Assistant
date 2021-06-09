@@ -23,7 +23,8 @@ button:focus {
   box-shadow: 0 0 0 0.1rem $secondary-background !important;
 }
 
-button:active {
+button:active,
+button:disabled {
   background-color: $grey-background !important;
   color: $primary-background !important;
 }
@@ -37,19 +38,20 @@ button:active {
 .signup-form {
   font-family: "Roboto", sans-serif;
   width: 500px;
-  margin: 150px auto;
+  margin: auto;
   padding: 50px 0;
+  align-items: center;
 }
 
 .signup-form-modal {
   font-family: "Roboto", sans-serif;
   margin: auto;
   width: 100%;
-  padding: 5px;
-  background-color: $grey-background !important;
+  padding: 0px;
 }
 
-.signup-form form {
+.signup-form form,
+form .signup-form {
   color: white;
   border-radius: 3px;
   margin-bottom: 15px;
@@ -95,21 +97,13 @@ button:active {
 }
 
 .signup-form a {
-  color: #fff;
+  color: white;
   text-decoration: underline;
 }
 
 .signup-form a:hover {
+  color: white;
   text-decoration: none;
-}
-
-.signup-form form a {
-  color: $grey-background;
-  text-decoration: none;
-}
-
-.signup-form form a:hover {
-  text-decoration: underline;
 }
 
 .signup-form .fa {
@@ -155,13 +149,39 @@ button:active {
   color: white;
 }
 
-.modal-dialog {
+.modal-dialog-terms {
   max-width: 1000px !important;
 }
 
-@media (min-width: 576px) {
+@media (max-width: 376px) {
   .modal-dialog {
     max-width: 500px;
     margin: 1.75rem auto;
+  }
+
+  .signup-form {
+    width: 345px;
+    margin: 100px auto;
+    padding: 0px 0;
+    overflow-y: scroll;
+  }
+
+  .signup-form-modal {
+    width: 330px;
+    margin: auto;
+    padding: 0px 0;
+    overflow: hidden;
+  }
+
+  .signup-form .btn,
+  .modal .btn {
+    margin: 0 20px;
+    align-items: center;
+    min-width: 100px;
+  }
+
+  .modal-footer {
+    display: inline !important;
+    margin-left: 8%;
   }
 }

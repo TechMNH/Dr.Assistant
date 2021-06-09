@@ -25,10 +25,11 @@ export class ErrorPageComponent implements OnInit {
 
   public errorDescription3: string = 'Doctor Not Found'; // 'Doctor Not Found'; 'Site Under Construction'; // 
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router) { }
 
-  ngOnInit(): void {
-    console.log(this.router.config)
-    console.log(this.route.data)
+  ngOnInit(): void { }
+
+  public navigateByUrl() {
+    this.router.navigateByUrl('/');
   }
 }

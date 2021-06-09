@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { NGXLogger } from 'ngx-logger';
+import { NGXLogger, NgxLoggerLevel } from 'ngx-logger';
 import { environment } from 'src/environments/environment';
 
 export type LogLevel = 'error' | 'debug' | 'trace' | 'info' | 'fatal' | 'log' | 'warn';
@@ -11,8 +11,10 @@ export class LoggerService {
 
   constructor(private __logger__: NGXLogger) { }
 
-  log(logData: any, logLevel: string = environment.defaultLogLevel, enableConsoleLog: boolean = true) {
-    if (enableConsoleLog) {
+  log(logData: any,
+    logLevel: LogLevel = NgxLoggerLevel[environment.logger.localLogLevel].toLowerCase() as LogLevel,
+    disableConsoleLogging: boolean = environment.logger.disableConsoleLogging) {
+    if (!disableConsoleLogging) {
       console.log(logData);
     }
     logData = JSON.stringify(logData);

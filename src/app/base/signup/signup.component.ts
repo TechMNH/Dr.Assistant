@@ -1,5 +1,8 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { ErrorMessage, ErrorService } from 'src/app/utility/services/error.service';
+import { FormsService } from 'src/app/utility/services/forms.service';
+import { LoaderService } from 'src/app/utility/services/loader.service';
 import { SignupService } from 'src/app/utility/services/signup.service';
 import { GuestProfile } from '../../models/guest.model';
 
@@ -24,11 +27,38 @@ export class SignupComponent implements OnInit {
   public readonly adminUrl: string = `assets/signup-page/admin-${this.iconNo}.svg`;
   public readonly guestUrl: string = `assets/signup-page/guest-${this.iconNo}.svg`;
 
-  public guestProfile: GuestProfile;
+  public profile: GuestProfile;
   public confirmPassword: string = null;
-  constructor(public signUpService: SignupService) { }
+  public onError: boolean = false;
+  public errorMessage: ErrorMessage = null;
+  public loader: boolean = false;
+
+  constructor(
+    public signUpService: SignupService,
+    private errorService: ErrorService,
+    private loaderService: LoaderService,
+    public formsService: FormsService
+  ) { }
 
   ngOnInit(): void {
-    this.guestProfile = new GuestProfile();
+    this.errorService.error = null;
+    this.loaderService.loader = false;
+    this.profile = new GuestProfile();
+    this.errorService.errorAsObservable.subscribe(error => {
+      if (error) {
+        this.errorMessage = error;
+        this.loader = false;
+        this.onError = true;
+      }
+    });
+    this.loaderService.loaderAsObservable.subscribe(loader => {
+      this.loader = loader;
+    });
+    this.formsService.guestSignupForm.valueChanges.subscribe(data => {
+      this.confirmPassword = data.confirmPassword;
+      this.profile.fullName = data.firstName;
+      this.profile.email = data.email;
+      this.profile.password.password = data.password;
+    });
   }
 }

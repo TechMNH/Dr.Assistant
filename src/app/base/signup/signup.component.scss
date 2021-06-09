@@ -5,16 +5,18 @@
 }
 
 .get-started {
-  margin: 25px 10px 25px 40px;
+  margin: 5px;
+  margin-left: 5%;
 }
 
 .content {
   display: flex;
-  margin: 82px auto 32px;
+  margin: 100px auto;
   padding: 0 16px;
   max-width: 960px;
   flex-direction: column;
   align-items: center;
+  overflow: hidden;
 }
 
 .card-container {
@@ -42,21 +44,25 @@
   line-height: 24px;
 }
 
+.card-top {
+  background-color: $primary-background;
+  border-radius: 30px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+  line-height: 24px;
+  color: white;
+  font-weight: 600;
+  min-width: 250px;
+}
+
+.card-top-contents {
+  margin: 0px;
+}
+
 .card-container .card:not(:last-child) {
   margin-right: 0;
-}
-
-.card.card-small {
-  height: 16px;
-  width: 168px;
-}
-
-.card-container .card:not(.highlight-card) {
-  cursor: pointer;
-}
-
-.card-container .card:not(.highlight-card):hover .material-icons path {
-  fill: rgb(105, 103, 103);
 }
 
 .big-svg {
@@ -64,8 +70,7 @@
   margin-left: 10px;
 }
 
-.card.highlight-card {
-  background-color: $primary-background;
+.card .highlight-card {
   color: white;
   font-weight: 600;
   border: none;
@@ -74,7 +79,7 @@
   position: relative;
 }
 
-.card.card.highlight-card span {
+.card .highlight-card span {
   margin-left: 60px;
 }
 
@@ -100,14 +105,6 @@
   padding-bottom: 30px;
 }
 
-svg#rocket-smoke {
-  height: calc(100vh - 95px);
-  position: absolute;
-  top: 10px;
-  right: 180px;
-  z-index: -10;
-}
-
 .card-container button {
   color: $primary-font;
 }
@@ -120,44 +117,25 @@ svg#rocket-smoke {
   margin-left: -14px;
 }
 
-/* Responsive Styles */
-@media screen and (max-width: 767px) {
-  .card-container > *:not(.circle-link),
-  .terminal {
-    width: 100%;
-  }
-
-  .card:not(.highlight-card) {
-    height: 16px;
-    margin: 8px 0;
-  }
-
-  .card.highlight-card span {
-    margin-left: 72px;
-  }
-
-  svg#rocket-smoke {
-    right: 120px;
-    transform: rotate(-5deg);
-  }
-
-  .card.highlight-card {
-    margin-left: 25px !important;
-  }
-}
-
 @media screen and (max-width: 575px) {
-  svg#rocket-smoke {
-    display: none;
-    visibility: hidden;
-  }
 
   .get-started {
-    margin: 25px 0px 25px 20px;
+    margin: auto;
+    align-items: center;
   }
 
-  .card.highlight-card {
-    min-width: 80%;
+  .card-top {
+    margin-left: 8%;
+  }
+
+  .card .highlight-card {
+    min-width: 100%;
+    margin-left: 8px !important;
+  }
+
+  .highlight-card img {
+    height: 50px;
+    width: 50px;
   }
 
   .height {
@@ -170,6 +148,17 @@ svg#rocket-smoke {
 
   .row,
   .col-sm-3 {
-    padding-bottom: 15px;
+    padding-bottom: 10px;
+    min-height: 100px;
+  }
+
+  .card-container {
+    margin-left: auto;
+    align-items: center;
+  }
+
+  .content {
+    margin: auto;
+    margin-top: 70px;
   }
 }
