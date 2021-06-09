@@ -1,4 +1,4 @@
-<div class="error-page-full caveman" *ngIf="randomError <= 5">
+<div class="error-page-full caveman" *ngIf="randomError <= 5" [@simpleFadeAnimation]="'in'">
   <section class="page_404">
     <div class="container">
       <div class="row">
@@ -21,7 +21,7 @@
 
 
 <div class="error-page-full cavemen" (click)="navigateByUrl()" style="cursor: pointer;"
-  *ngIf="randomError > 5 && randomError <= 10">
+  *ngIf="randomError > 5 && randomError <= 10" [@simpleFadeAnimation]="'in'">
   <span data-toggle="tooltip" title="Click to goto Home">
     <div>
       <p class="text">{{errorTitle}}</p>
@@ -84,7 +84,7 @@
   </span>
 </div>
 
-<div class="error-page-full corona" *ngIf="randomError > 10">
+<div class="error-page-full corona" *ngIf="randomError > 10" [@simpleFadeAnimation]="'in'">
   <div class="site">
     <div class="sketch">
       <div class="bee-sketch red"></div>

@@ -1,7 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
 import { ErrorMessage, ErrorService } from 'src/app/utility/services/error.service';
+import { FormsService } from 'src/app/utility/services/forms.service';
 import { LoaderService } from 'src/app/utility/services/loader.service';
 import { SignupService } from 'src/app/utility/services/signup.service';
 import { AdminProfile } from '../../models/admin.model';
@@ -20,30 +20,23 @@ import { AdminProfile } from '../../models/admin.model';
 })
 export class AdminSignupComponent implements OnInit {
 
-  public adminProfile: AdminProfile;
+  public profile: AdminProfile;
   public confirmPassword: string = null;
   public onError: boolean = false;
   public errorMessage: ErrorMessage = null;
   public loader: boolean = false;
-  public profileForm = new FormGroup({
-    firstName: new FormControl(''),
-    lastName: new FormControl(''),
-    displayName: new FormControl(''),
-    email: new FormControl(''),
-    password: new FormControl(''),
-    confirmPassword: new FormControl('')
-  });
 
   constructor(
     public signUpService: SignupService,
     private errorService: ErrorService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    public formsService: FormsService
   ) { }
 
   ngOnInit(): void {
     this.errorService.error = null;
     this.loaderService.loader = false;
-    this.adminProfile = new AdminProfile();
+    this.profile = new AdminProfile();
     this.errorService.errorAsObservable.subscribe(error => {
       if (error) {
         this.errorMessage = error;
@@ -53,6 +46,14 @@ export class AdminSignupComponent implements OnInit {
     });
     this.loaderService.loaderAsObservable.subscribe(loader => {
       this.loader = loader;
-    })
+    });
+    this.formsService.signupForm.valueChanges.subscribe(data => {
+        this.confirmPassword = data.confirmPassword;
+        this.profile.identificationDetails.firstName = data.firstName;
+        this.profile.identificationDetails.lastName = data.lastName;
+        this.profile.identificationDetails.displayName = data.displayName;
+        this.profile.identificationDetails.email = data.email;
+        this.profile.identificationDetails.password = data.password;
+    });
   }
 }

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DoctorDashboardComponent } from './doctor-dashboard/doctor-dashboard.component';
 import { DoctorRoutingModule } from './doctor-routing.module';
 import { DoctorSigninComponent } from './doctor-signin/doctor-signin.component';
@@ -8,6 +8,7 @@ import { PrescriptionComponent } from './prescription/prescription.component';
 import { CheckUpComponent } from './check-up/check-up.component';
 import { BaseModule } from '../base/base.module';
 import { CommonModule } from '@angular/common';
+import { FormFillupComponent } from './form-fillup/form-fillup.component';
 
 
 @NgModule({
@@ -16,13 +17,15 @@ import { CommonModule } from '@angular/common';
     DoctorSignupComponent,
     DoctorDashboardComponent,
     PrescriptionComponent,
-    CheckUpComponent
+    CheckUpComponent,
+    FormFillupComponent
   ],
   imports: [
     DoctorRoutingModule,
     FormsModule,
     CommonModule,
-    BaseModule
+    BaseModule,
+    ReactiveFormsModule
   ]
 })
 export class DoctorModule { }

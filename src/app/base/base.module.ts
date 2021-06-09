@@ -5,7 +5,7 @@ import { HomeComponent } from './home/home.component';
 import { MedicineComponent } from './medicine/medicine.component';
 import { BaseRoutingModule } from './base-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SigninComponent } from './signin/signin.component';
 import { ProfileComponent } from './profile/profile.component';
 import { UpdateProfileComponent } from './update-profile/update-profile.component';
@@ -35,7 +35,8 @@ import { ErrorPageComponent } from './error-page/error-page.component';
   imports: [
     CommonModule,
     BaseRoutingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     HomeComponent,

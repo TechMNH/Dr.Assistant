@@ -7,6 +7,7 @@ import { AdminRoutingModule } from './admin-routing.module';
 import { AdminSigninComponent } from './admin-signin/admin-signin.component';
 import { AdminSignupComponent } from './admin-signup/admin-signup.component';
 import { VerificationComponent } from './verification/verification.component';
+import { FormFillupComponent } from './form-fillup/form-fillup.component';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { VerificationComponent } from './verification/verification.component';
     AdminSigninComponent,
     AdminSignupComponent,
     AdminDashboardComponent,
-    VerificationComponent
+    VerificationComponent,
+    FormFillupComponent
   ],
   imports: [
     AdminRoutingModule,

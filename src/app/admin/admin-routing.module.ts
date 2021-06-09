@@ -24,7 +24,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: AdminDashboardComponent,
-    canActivate: [AdminGuard],
+    // canActivate: [AdminGuard],
     children: [
       {
         path: 'verification',

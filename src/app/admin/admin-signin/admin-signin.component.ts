@@ -42,6 +42,6 @@ export class AdminSigninComponent implements OnInit {
     });
     this.loaderService.loaderAsObservable.subscribe(loader => {
       this.loader = loader;
-    })
+    });
   }
 }
