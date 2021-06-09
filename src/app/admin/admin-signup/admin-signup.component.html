@@ -64,7 +64,7 @@
         </div>
         <div class="form-group">
             <button class="btn btn-primary btn-lg"
-                (click)="signUpService.basicEmailSignup(adminProfile,confirmPassword,'admin')">Sign Up</button>
+                (click)="signUpService.basicEmailSignup(adminProfile,confirmPassword)">Sign Up</button>
             <button class="btn btn-primary btn-lg" (click)="signUpService.navigateByUrl('/admin/signin')">Sign
                 In</button>
         </div>
@@ -512,4 +512,12 @@
 
         </div>
     </div>
+</div>
+
+<div *ngIf="onError">
+    <app-error-message [error]="errorMessage" (closeBtn)="onError = false"></app-error-message>
+</div>
+
+<div *ngIf="loader">
+    <app-loader></app-loader>
 </div>

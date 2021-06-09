@@ -5,6 +5,7 @@ import { AdminGuard } from '../utility/services/fire-guard.guard';
 import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminSigninComponent } from './admin-signin/admin-signin.component';
 import { AdminSignupComponent } from './admin-signup/admin-signup.component';
+import { VerificationComponent } from './verification/verification.component';
 
 const routes: Routes = [
   {
@@ -23,7 +24,13 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: AdminDashboardComponent,
-    canActivate: [AdminGuard]
+    canActivate: [AdminGuard],
+    children: [
+      {
+        path: 'verification',
+        component: VerificationComponent
+      }
+    ]
   },
   {
     path: '**',

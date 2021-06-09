@@ -38,4 +38,27 @@ export class Constants {
     public static readonly PASSWORD_STRENGTH_WEAK: PasswordStrength = 'weak';
 
     public static readonly PASSWORD_REGEX: RegExp = /^(?=.*[0-9]).{1,}(?=.*[a-z]).{1,}(?=.*[A-Z]).{1,}(?=.*[!@#$&*]).{1,}.{8,}$/;
+
+    public static readonly ERROR_TITLE_AUTHORIZATION: string = 'Authorization Error';
+    public static readonly ERROR_TITLE_LOGIN: string = 'Firebase Login Error';
+    public static readonly ERROR_TITLE_DATA_ENTRY: string = 'Data Entry Error';
+    public static readonly ERROR_TITLE_PASSWORD: string = 'Password Error';
+    public static readonly ERROR_TITLE_SIGNUP: string = 'Firebase Signup Error';
+
+    public static readonly ERROR_MESSAGE_AUTHORIZATION: { message: string, admin: string, doc: string, pat: string, guest: string } = {
+        message: 'You are not authorized to login',
+        admin: 'as admin',
+        doc: 'as doctor',
+        pat: 'as patient',
+        guest: 'as guest'
+    };
+    public static readonly ERROR_MESSAGE_DATA_ENTRY: { message: string, email: string, password: string, emailAndPassword: string } = {
+        message: 'Enter valid ',
+        email: 'email',
+        password: 'password',
+        emailAndPassword: 'email and password'
+    };
+    public static readonly ERROR_MESSAGE_PASSWORD_STRENGTH: string = 'Your password is ';
+    public static readonly ERROR_MESSAGE_PASSWORD_MISMATCH: string = 'Password and Confirm Password do not match';
+    public static readonly ERROR_MESSAGE_SIGNUP_DATABASE: string = 'Data not added to database';
 }

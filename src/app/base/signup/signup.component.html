@@ -66,7 +66,7 @@
 <div class="container">
     <!-- Modal -->
     <div class="modal fade" id="signup-guest" role="dialog">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-dialog-centered">
             <!-- Modal content-->
             <div class="modal-content">
                 <div class="modal-header">
@@ -112,11 +112,20 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary btn-lg" data-dismiss="modal" (click)="signUpService.basicEmailSignupGuest(guestProfile,confirmPassword)">Submit</button>
+                    <button class="btn btn-primary btn-lg" data-dismiss="modal"
+                        (click)="signUpService.basicEmailSignupGuest(guestProfile,confirmPassword)">Submit</button>
                     <button class="btn btn-primary btn-lg" data-dismiss="modal">Cancel</button>
                 </div>
             </div>
 
         </div>
     </div>
+</div>
+
+<div *ngIf="onError">
+    <app-error-message [error]="errorMessage" (closeBtn)="onError = false"></app-error-message>
+</div>
+
+<div *ngIf="loader">
+    <app-loader></app-loader>
 </div>

@@ -1,5 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { ErrorMessage, ErrorService } from 'src/app/utility/services/error.service';
+import { LoaderService } from 'src/app/utility/services/loader.service';
 import { SignupService } from 'src/app/utility/services/signup.service';
 import { GuestProfile } from '../../models/guest.model';
 
@@ -26,9 +28,29 @@ export class SignupComponent implements OnInit {
 
   public guestProfile: GuestProfile;
   public confirmPassword: string = null;
-  constructor(public signUpService: SignupService) { }
+  public onError: boolean = false;
+  public errorMessage: ErrorMessage = null;
+  public loader: boolean = false;
+
+  constructor(
+    public signUpService: SignupService,
+    private errorService: ErrorService,
+    private loaderService: LoaderService
+  ) { }
 
   ngOnInit(): void {
+    this.errorService.error = null;
+    this.loaderService.loader = false;
     this.guestProfile = new GuestProfile();
+    this.errorService.errorAsObservable.subscribe(error => {
+      if (error) {
+        this.errorMessage = error;
+        this.loader = false;
+        this.onError = true;
+      }
+    });
+    this.loaderService.loaderAsObservable.subscribe(loader => {
+      this.loader = loader;
+    })
   }
 }

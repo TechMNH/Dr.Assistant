@@ -7,16 +7,45 @@ import { BaseRoutingModule } from './base-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FormsModule } from '@angular/forms';
 import { SigninComponent } from './signin/signin.component';
+import { ProfileComponent } from './profile/profile.component';
+import { UpdateProfileComponent } from './update-profile/update-profile.component';
+import { PaymentComponent } from './payment/payment.component';
+import { ContactUsComponent } from './contact-us/contact-us.component';
+import { LoaderComponent } from './loader/loader.component';
+import { ErrorMessageComponent } from './error-message/error-message.component';
+import { ErrorPageComponent } from './error-page/error-page.component';
 
 
 
 @NgModule({
-  declarations: [HomeComponent, SignupComponent, MedicineComponent, DashboardComponent, SigninComponent],
+  declarations: [
+    HomeComponent,
+    SignupComponent,
+    MedicineComponent,
+    DashboardComponent,
+    SigninComponent,
+    ProfileComponent,
+    UpdateProfileComponent,
+    PaymentComponent,
+    ContactUsComponent,
+    LoaderComponent,
+    ErrorMessageComponent,
+    ErrorPageComponent
+  ],
   imports: [
     CommonModule,
     BaseRoutingModule,
     FormsModule
   ],
-  exports: [HomeComponent, SignupComponent, MedicineComponent]
+  exports: [
+    HomeComponent,
+    SignupComponent,
+    MedicineComponent,
+    ProfileComponent,
+    UpdateProfileComponent,
+    PaymentComponent,
+    LoaderComponent,
+    ErrorMessageComponent
+  ]
 })
 export class BaseModule { }
