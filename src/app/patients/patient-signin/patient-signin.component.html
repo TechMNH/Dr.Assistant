@@ -1,7 +1,7 @@
-<div class="sign-up signup-form">
+<div class="sign-up signup-form" [@simpleFadeAnimation]="'in'">
     <form>
         <h2>Sign In As Patient</h2>
-        <p>Please fill in this sign in!</p>
+        <p>Please fill this to sign in!</p>
         <hr>
         <div class="form-group">
             <div class="input-group">
@@ -20,7 +20,16 @@
         <div class="form-group">
             <button class="btn btn-primary btn-lg" (click)="signInService.basicEmailSignin(email,password,'pat')">Sign
                 In</button>
-            <button class="btn btn-primary btn-lg" (click)="signInService.navigateByUrl('/patient/signup')">Sign Up</button>
+            <button class="btn btn-primary btn-lg" (click)="signInService.navigateByUrl('/patient/signup')">Sign
+                Up</button>
         </div>
     </form>
+</div>
+
+<div *ngIf="onError">
+    <app-error-message [error]="errorMessage" (closeBtn)="onError = false"></app-error-message>
+</div>
+
+<div *ngIf="loader">
+    <app-loader></app-loader>
 </div>

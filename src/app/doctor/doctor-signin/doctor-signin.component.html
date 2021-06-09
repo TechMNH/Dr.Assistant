@@ -1,7 +1,7 @@
-<div class="sign-up signup-form">
+<div class="sign-up signup-form" [@simpleFadeAnimation]="'in'">
     <form>
         <h2>Sign In As Doctor</h2>
-        <p>Please fill in this sign in!</p>
+        <p>Please fill this to sign in!</p>
         <hr>
         <div class="form-group">
             <div class="input-group">
@@ -24,4 +24,12 @@
                 Up</button>
         </div>
     </form>
+</div>
+
+<div *ngIf="onError">
+    <app-error-message [error]="errorMessage" (closeBtn)="onError = false"></app-error-message>
+</div>
+
+<div *ngIf="loader">
+    <app-loader></app-loader>
 </div>
