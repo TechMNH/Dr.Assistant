@@ -153,6 +153,10 @@ form .signup-form {
   max-width: 1000px !important;
 }
 
+.modal-footer {
+  justify-content: center !important;
+}
+
 @media (max-width: 576px) {
   .modal-dialog {
     max-width: 500px;
@@ -178,10 +182,5 @@ form .signup-form {
     margin: 0 20px;
     align-items: center;
     min-width: 100px;
-  }
-
-  .modal-footer {
-    display: inline !important;
-    margin-left: 8%;
   }
 }
