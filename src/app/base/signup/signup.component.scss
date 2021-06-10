@@ -5,8 +5,7 @@
 }
 
 .get-started {
-  margin: 5px;
-  margin-left: 5%;
+  margin: 20px -30px 25px 15px;
 }
 
 .content {
@@ -16,23 +15,19 @@
   max-width: 960px;
   flex-direction: column;
   align-items: center;
-  overflow: hidden;
 }
 
 .card-container {
-  display: flex;
   flex-wrap: wrap;
-  flex-direction: column;
-  margin-top: 16px;
-  margin-left: 25px;
-  height: 100%;
+  justify-content: center;
+  margin-top: 80px;
 }
 
 .card {
   border-radius: 25px;
   border: 1px solid $grey-border;
   background-color: $grey-background;
-  height: 40px;
+  height: 35px;
   width: 200px;
   margin: 0 8px 16px;
   padding: 16px;
@@ -44,33 +39,30 @@
   line-height: 24px;
 }
 
-.card-top {
-  background-color: $primary-background;
-  border-radius: 30px;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  transition: all 0.2s ease-in-out;
-  line-height: 24px;
-  color: white;
-  font-weight: 600;
-  min-width: 250px;
-}
-
-.card-top-contents {
-  margin: 0px;
-}
-
 .card-container .card:not(:last-child) {
   margin-right: 0;
 }
 
-.big-svg {
-  padding-bottom: 10px;
-  margin-left: 10px;
+.card.card-small {
+  height: 16px;
+  width: 200px;
 }
 
-.card .highlight-card {
+.card-container .card:not(.highlight-card) {
+  cursor: pointer;
+}
+
+.card-container .card:not(.highlight-card):hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 17px rgba(black, 0.35);
+}
+
+.card-container .card:not(.highlight-card):hover .material-icons path {
+  fill: rgb(105, 103, 103);
+}
+
+.card.highlight-card {
+  background-color: $primary-background;
   color: white;
   font-weight: 600;
   border: none;
@@ -79,11 +71,21 @@
   position: relative;
 }
 
-.card .highlight-card span {
+.card.card.highlight-card span {
   margin-left: 60px;
 }
 
-.height,
+button,
+button:visited,
+button:hover {
+  color: $primary-font;
+  text-decoration: none;
+}
+
+button:hover {
+  color: $primary-font;
+}
+
 .col-lg-6 {
   display: flex;
   flex-direction: row;
@@ -96,50 +98,19 @@
   outline: 0 !important;
 }
 
-.col-lg-6 button:hover {
-  transform: translateY(-5px);
-  // box-shadow: 0 4px 17px rgb(0 0 0 / 35%);
-}
-
-.row {
-  padding-bottom: 30px;
-}
-
-.card-container button {
-  color: $primary-font;
-}
-
-.card-container > button:hover {
-  color: $secondary-font;
-}
-
-.alignment-links {
-  margin-left: -14px;
+.big-svg {
+  padding-bottom: 10px;
+  margin-left: 10px;
 }
 
 @media screen and (max-width: 575px) {
-
   .get-started {
-    margin: auto;
-    align-items: center;
+    margin: 25px 0px 25px 10px;
   }
 
-  .card-top {
-    margin-left: 8%;
-  }
-
-  .card .highlight-card {
-    min-width: 100%;
-    margin-left: 8px !important;
-  }
-
-  .highlight-card img {
-    height: 50px;
-    width: 50px;
-  }
-
-  .height {
-    display: none;
+  .card.highlight-card {
+    margin-left: 50px !important;
+    width: 70% !important;
   }
 
   .big-svg {
@@ -153,12 +124,10 @@
   }
 
   .card-container {
-    margin-left: auto;
-    align-items: center;
+    margin-top: 16px;
   }
 
   .content {
-    margin: auto;
-    margin-top: 70px;
+    margin: 82px auto 32px;
   }
 }
