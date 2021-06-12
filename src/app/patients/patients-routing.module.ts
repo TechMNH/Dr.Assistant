@@ -1,29 +1,26 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { ErrorPageComponent } from '../base/error-page/error-page.component';
 import { PatientGuard } from '../utility/services/fire-guard.guard';
+import { ConsultationComponent } from './consultation/consultation.component';
 import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
-import { PatientSigninComponent } from './patient-signin/patient-signin.component';
-import { PatientSignupComponent } from './patient-signup/patient-signup.component';
 
 const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
-    redirectTo: 'signin'
-  },
-  {
-    path: 'signin',
-    component: PatientSigninComponent
-  },
-  {
-    path: 'signup',
-    component: PatientSignupComponent
+    redirectTo: 'dashboard'
   },
   {
     path: 'dashboard',
     component: PatientDashboardComponent,
-    canActivate: [PatientGuard]
+    canActivate: [PatientGuard],
+    children: [
+      {
+        path: 'consultation',
+        component: ConsultationComponent
+      }
+    ]
   },
   {
     path: '**',

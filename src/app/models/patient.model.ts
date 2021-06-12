@@ -1,5 +1,7 @@
-import { IdentificationDetails, Rating } from "./common.model";
+import { IdentificationDetails, Rating, Ratings } from "./common.model";
 import { DoctorIdentifier } from "./doctor.model";
+
+export type AilmentStatus = 'open' | 'closed';
 
 export class AilmentDescription {
     symptoms: [string] = null;
@@ -11,7 +13,9 @@ export class AilmentDescription {
 }
 
 export class PatientAilmentDetails {
-    date: Date = null;
+    id: string = null;
+    status: AilmentStatus = 'open';
+    date: Date = new Date();
     title: string = null;
     description: AilmentDescription = new AilmentDescription();
     patientRating: Rating = new Rating();
@@ -24,7 +28,7 @@ export class PatientProfile {
     shareMedicalHistoryWithDoctor: boolean = true;
     shareHistoryNumberWithDoctor: number = null;
     favoriteDoctors: [DoctorIdentifier] = [new DoctorIdentifier()];
-    rating: Rating = new Rating();
-    satisfactionRating: Rating = new Rating();
+    rating: Ratings = new Ratings();
+    satisfactionRating: Ratings = new Ratings();
     verifiedProfile: boolean = false;
 }

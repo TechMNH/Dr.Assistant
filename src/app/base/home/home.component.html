@@ -6,25 +6,25 @@
   </div>
 
   <div class="card-container">
-    <button class="card" [routerLink]="['../doctor']">
+    <button class="card" [routerLink]="['signin']" [state]="{ user: 'doc' }">
       <img src="assets/home-page/doctor-login.svg" class="material-icons alignment-links" style="margin-right: 10px;"
         width="24" height="24" alt="Doctor">
       <span>Doctor's Sign In</span>
     </button>
 
-    <button class="card" [routerLink]="['../patient']">
+    <button class="card" [routerLink]="['signin']" [state]="{ user: 'pat' }">
       <img src="assets/home-page/patient-login.svg" class="material-icons alignment-links" style="margin-right: 10px;"
         width="24" height="24" alt="patient">
       <span>Patient's Sign In</span>
     </button>
 
-    <button class="card" [routerLink]="['../admin']">
+    <button class="card" [routerLink]="['signin']" [state]="{ user: 'admin' }">
       <img src="assets/home-page/admin-login.svg" class="material-icons alignment-links" style="margin-right: 10px;"
         width="24" height="24" alt="admin">
       <span>Admin's Sign In</span>
     </button>
 
-    <button class="card" [routerLink]="['guest']">
+    <button class="card" [routerLink]="['signin']" [state]="{ user: 'guest' }">
       <img src="assets/home-page/guest-login.svg" class="material-icons alignment-links" style="margin-right: 10px;"
         width="24" height="24" alt="admin">
       <span>Guest's Sign In</span>

@@ -1,4 +1,29 @@
 <div [@simpleFadeAnimation]="'in'">
-    <p>admin-dashboard works!</p>
-    <app-verification></app-verification>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['verification']">Verification</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['profile']">View Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['update-profile']">Update Profile</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['payment']">View Payment Methods</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" [routerLink]="['medicine']">Medicine</a>
+        </li>
+    </ul>
+
+    <router-outlet></router-outlet>
+
+</div>
+<div *ngIf="onError">
+    <app-error-message [error]="errorMessage" (closeBtn)="onError = false"></app-error-message>
+</div>
+
+<div *ngIf="loader">
+    <app-loader></app-loader>
 </div>

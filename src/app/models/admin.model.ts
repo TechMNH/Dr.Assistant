@@ -1,6 +1,6 @@
 import { IdentificationDetails } from "./common.model";
 
-export type AdminControls = 'full' | 'maintanance' | 'medical';
+export type AdminControls = 'full' | 'maintanance' | 'medical' | 'super-admin';
 
 export class AdminProfile {
     identificationDetails: IdentificationDetails = new IdentificationDetails('admin');
