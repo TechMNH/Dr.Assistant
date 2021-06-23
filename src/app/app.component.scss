@@ -34,6 +34,15 @@
   margin-left: 1%;
 }
 
+.logout {
+  position: absolute;
+  right: 20px;
+  padding: 8px;
+  border: 1px solid white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 575px) {
   .footer {
     position: fixed;
@@ -45,10 +54,10 @@
     background-color: $primary-background;
     color: white;
   }
-  
+
   .footer-text {
     position: inherit;
     margin-top: 0.6%;
     margin-left: 3%;
-  } 
+  }
 }

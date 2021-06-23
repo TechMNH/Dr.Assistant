@@ -1,4 +1,4 @@
-export type UserTypes = 'doc' | 'pat' | 'admin' | 'super-admin' | 'guest';
+export type UserTypes = 'doc' | 'pat' | 'admin' | 'guest';
 
 export class UniqueId {
     constructor(type: UserTypes = 'pat') {

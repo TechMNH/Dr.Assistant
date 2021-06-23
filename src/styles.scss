@@ -29,6 +29,10 @@ button:disabled {
   color: $primary-background !important;
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 .form-control,
 .modal,
 .btn {
@@ -125,7 +129,7 @@ form .signup-form {
 .modal .btn,
 .signup-form .btn {
   border-radius: 3px;
-  margin: 0 40px;
+  margin: 0 0 0 60px;
   color: black;
   font-size: 16px;
   font-weight: bold;
@@ -179,7 +183,7 @@ form .signup-form {
 
   .signup-form .btn,
   .modal .btn {
-    margin: 0 20px;
+    margin: 0 0 0 37px;
     align-items: center;
     min-width: 100px;
   }

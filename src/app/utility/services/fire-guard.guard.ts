@@ -26,7 +26,7 @@ export class AdminGuard implements CanActivate {
         this.router.navigateByUrl('/home');
         return false
       };
-    }))
+    }));
   }
 
 }
@@ -52,7 +52,7 @@ export class DoctorGuard implements CanActivate {
         this.router.navigateByUrl('/home');
         return false
       };
-    }))
+    }));
   }
 
 }
@@ -78,7 +78,7 @@ export class PatientGuard implements CanActivate {
         this.router.navigateByUrl('/home');
         return false
       };
-    }))
+    }));
   }
 
 }
@@ -104,7 +104,6 @@ export class GuestGuard implements CanActivate {
         this.router.navigateByUrl('/home');
         return false
       };
-    }))
+    }));
   }
-
 }
