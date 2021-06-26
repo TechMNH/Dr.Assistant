@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
 import * as firebase from 'firebase/app';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { UserTypes } from 'src/app/models/common.model';
 import { GuestProfile } from 'src/app/models/guest.model';
@@ -15,7 +15,8 @@ import { FireDatabase } from './fire-db.service';
 })
 
 export class FireAuthService {
-  loggedIn = false;
+  private loggedInBS: BehaviorSubject<{ loggedIn: boolean, type: UserTypes }> = new BehaviorSubject(null);
+  private readonly loggedInOB: Observable<{ loggedIn: boolean, type: UserTypes }> = this.loggedInBS.asObservable();
 
   constructor(
     private afs: AngularFirestore,   // Inject Firestore service
@@ -102,13 +103,23 @@ export class FireAuthService {
       if (profile) {
         const type: UserTypes = (profile['identificationDetails']) ? profile['identificationDetails']['uid']['type'] : null;
         const guestType: UserTypes = (profile['uid']) ? profile['uid']['type'] : null;
-        return {
-          loggedIn: true,
-          type: type ? type : guestType
-        }
+        this.loggedIn = { loggedIn: true, type: type ? type : guestType };
+        return this.loggedIn;
       }
       else return { loggedIn: false, type: null }
     }));
+  }
+
+  set loggedIn(loggedIn: { loggedIn: boolean, type: UserTypes }) {
+    this.loggedInBS.next(loggedIn);
+  }
+
+  get loggedIn(): { loggedIn: boolean, type: UserTypes } {
+    return this.loggedInBS.value;
+  };
+
+  get loggedInAsObservable(): Observable<{ loggedIn: boolean, type: UserTypes }> {
+    return this.loggedInOB;
   }
 
   // Sign out
