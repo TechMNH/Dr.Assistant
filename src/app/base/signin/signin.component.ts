@@ -1,5 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { UserTypes } from 'src/app/models/common.model';
 import { ErrorMessage, ErrorService } from 'src/app/utility/services/error.service';
 import { LoaderService } from 'src/app/utility/services/loader.service';
 import { SigninService } from 'src/app/utility/services/signin.service';
@@ -23,16 +25,31 @@ export class SigninComponent implements OnInit {
   public onError: boolean = false;
   public errorMessage: ErrorMessage = null;
   public loader: boolean = false;
+  public user: UserTypes = null;
+  public message: string = null;
 
   constructor(
     public signInService: SigninService,
     private errorService: ErrorService,
-    private loaderService: LoaderService
+    private loaderService: LoaderService,
+    private activatedroute: ActivatedRoute
   ) { }
 
   ngOnInit(): void {
+    this.loader = true;
+    this.activatedroute.paramMap.subscribe(data => {
+      this.loader = false;
+      this.user = window.history.state.user as UserTypes;
+      if (this.user === 'admin')
+        this.message = 'Admin';
+      else if (this.user === 'guest')
+        this.message = 'Guest';
+      else if (this.user === 'doc')
+        this.message = 'Doctor';
+      else if (this.user === 'pat')
+        this.message = 'Patient';
+    })
     this.errorService.error = null;
-    this.loaderService.loader = false;
     this.errorService.errorAsObservable.subscribe(error => {
       if (error) {
         this.errorMessage = error;

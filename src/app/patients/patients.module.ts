@@ -1,22 +1,16 @@
-import { NgModule } from '@angular/core';
-import { PatientsRoutingModule } from './patients-routing.module';
-import { PatientSigninComponent } from './patient-signin/patient-signin.component';
-import { PatientSignupComponent } from './patient-signup/patient-signup.component';
-import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ConsultationComponent } from './consultation/consultation.component';
-import { BaseModule } from '../base/base.module';
 import { CommonModule } from '@angular/common';
-import { FormFillupComponent } from './form-fillup/form-fillup.component';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BaseModule } from '../base/base.module';
+import { ConsultationComponent } from './consultation/consultation.component';
+import { PatientDashboardComponent } from './patient-dashboard/patient-dashboard.component';
+import { PatientsRoutingModule } from './patients-routing.module';
 
 
 @NgModule({
   declarations: [
-    PatientSigninComponent,
-    PatientSignupComponent,
     PatientDashboardComponent,
-    ConsultationComponent,
-    FormFillupComponent
+    ConsultationComponent
   ],
   imports: [
     PatientsRoutingModule,

@@ -17,21 +17,16 @@ const routes: Routes = [
     component: SignupComponent
   },
   {
+    path: 'signin',
+    component: SigninComponent
+  },
+  {
     path: 'guest',
+    canActivate: [GuestGuard],
     children: [
       {
-        path: '',
-        pathMatch: 'full',
-        redirectTo: 'signin'
-      },
-      {
-        path: 'signin',
-        component: SigninComponent
-      },
-      {
         path: 'dashboard',
-        component: DashboardComponent,
-        canActivate: [GuestGuard]
+        component: DashboardComponent
       }
     ]
   }

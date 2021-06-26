@@ -1,13 +1,12 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
-import { FireAuthService } from './services/fire-auth.service';
-import { FormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from "@angular/fire/auth";
 import { AngularFirestoreModule } from '@angular/fire/firestore';
-import { AngularFireModule } from '@angular/fire';
-import { environment } from 'src/environments/environment';
-import { LoggerModule } from 'ngx-logger';
+import { FormsModule } from '@angular/forms';
 import { CookieService } from 'ngx-cookie-service';
-import { HttpClientModule } from '@angular/common/http';
+import { LoggerModule } from 'ngx-logger';
+import { environment } from 'src/environments/environment';
 import { FireDatabase } from './services/fire-db.service';
 
 
@@ -26,7 +25,6 @@ import { FireDatabase } from './services/fire-db.service';
     })
   ],
   providers: [
-    FireAuthService,
     CookieService,
     FireDatabase
   ]

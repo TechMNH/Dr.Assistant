@@ -1,5 +1,10 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { AdminProfile } from 'src/app/models/admin.model';
+import { UserTypes } from 'src/app/models/common.model';
+import { DoctorProfile } from 'src/app/models/doctor.model';
+import { PatientProfile } from 'src/app/models/patient.model';
+import { AnyButGuestProfile } from 'src/app/utility/services/data.service';
 import { ErrorMessage, ErrorService } from 'src/app/utility/services/error.service';
 import { FormsService } from 'src/app/utility/services/forms.service';
 import { LoaderService } from 'src/app/utility/services/loader.service';
@@ -27,11 +32,13 @@ export class SignupComponent implements OnInit {
   public readonly adminUrl: string = `assets/signup-page/admin-${this.iconNo}.svg`;
   public readonly guestUrl: string = `assets/signup-page/guest-${this.iconNo}.svg`;
 
-  public profile: GuestProfile;
+  public guestProfile: GuestProfile;
+  public profile: AnyButGuestProfile;
   public confirmPassword: string = null;
   public onError: boolean = false;
   public errorMessage: ErrorMessage = null;
   public loader: boolean = false;
+  public user: string = null;
 
   constructor(
     public signUpService: SignupService,
@@ -43,7 +50,9 @@ export class SignupComponent implements OnInit {
   ngOnInit(): void {
     this.errorService.error = null;
     this.loaderService.loader = false;
-    this.profile = new GuestProfile();
+    this.guestProfile = new GuestProfile();
+    this.profile = new PatientProfile();
+
     this.errorService.errorAsObservable.subscribe(error => {
       if (error) {
         this.errorMessage = error;
@@ -51,14 +60,34 @@ export class SignupComponent implements OnInit {
         this.onError = true;
       }
     });
+
     this.loaderService.loaderAsObservable.subscribe(loader => {
       this.loader = loader;
     });
+
     this.formsService.guestSignupForm.valueChanges.subscribe(data => {
       this.confirmPassword = data.confirmPassword;
-      this.profile.fullName = data.firstName;
-      this.profile.email = data.email;
-      this.profile.password.password = data.password;
+      this.guestProfile.fullName = data.firstName;
+      this.guestProfile.email = data.email;
+      this.guestProfile.password.password = data.password;
     });
+
+    this.formsService.signupForm.valueChanges.subscribe(data => {
+      this.confirmPassword = data.confirmPassword;
+      this.profile.identificationDetails.firstName = data.firstName;
+      this.profile.identificationDetails.lastName = data.lastName;
+      this.profile.identificationDetails.displayName = data.displayName;
+      this.profile.identificationDetails.email = data.email;
+      this.profile.identificationDetails.password.password = data.password;
+    });
+  }
+
+  signUp(userType: UserTypes) {
+    if (userType === 'admin')
+      this.profile = new AdminProfile();
+    else if (userType === 'doc')
+      this.profile = new DoctorProfile();
+    else if (userType === 'pat')
+      this.profile = new PatientProfile();
   }
 }

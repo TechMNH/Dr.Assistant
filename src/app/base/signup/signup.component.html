@@ -1,3 +1,4 @@
+<!-- Signup Buttons -->
 <div class="content" role="main" [@simpleFadeAnimation]="'in'">
     <div class="card highlight-card card-small">
         <img src="assets/prescription.svg" width="60" height="60" alt="Prescription" style="margin-left: -70px;">
@@ -7,7 +8,7 @@
     <div class="container card-container">
         <div class="row">
             <div class="col-lg-6 col-sm-3">
-                <button class="btn" [routerLink]="['../../doctor/signup']">
+                <button class="btn" data-toggle="modal" data-target="#signup" (click)="user='Doctor'; signUp('doc')">
                     <img [src]="doctorUrl" class="material-icons big-svg" width="200" height="200" alt="Doctor Signup">
                     <span class="card">
                         <img src="assets/home-page/doctor-login.svg" class="material-icons alignment-links"
@@ -17,7 +18,7 @@
                 </button>
             </div>
             <div class="col-lg-6 col-sm-3">
-                <button class="btn" [routerLink]="['../../patient/signup']">
+                <button class="btn" data-toggle="modal" data-target="#signup" (click)="user='Patient'; signUp('pat')">
                     <img [src]="patientUrl" class="material-icons big-svg" width="200" height="200"
                         alt="Patient SIgnup">
                     <span class="card">
@@ -30,7 +31,7 @@
         </div>
         <div class="row">
             <div class="col-lg-6 col-sm-3">
-                <button class="btn" [routerLink]="['../../admin/signup']">
+                <button class="btn" data-toggle="modal" data-target="#signup" (click)="user='Admin'; signUp('admin')">
                     <img [src]="adminUrl" class="material-icons big-svg" width="200" height="200" alt="Admin Signup">
                     <span class="card">
                         <img src="assets/home-page/admin-login.svg" class="material-icons alignment-links"
@@ -53,6 +54,7 @@
     </div>
 </div>
 
+<!-- Guest Sigup -->
 <div class="container">
     <!-- Modal -->
     <div class="modal fade" id="signup-guest" role="dialog">
@@ -106,7 +108,7 @@
                     </div>
                     <div class="modal-footer">
                         <button class="btn btn-primary btn-lg" data-dismiss="modal"
-                            (click)="signUpService.basicEmailSignupGuest(profile,confirmPassword)"
+                            (click)="signUpService.basicEmailSignupGuest(guestProfile,confirmPassword)"
                             [disabled]="!formsService.guestSignupForm.valid" data-toggle="tooltip" data-placement="top"
                             [title]="(!formsService.guestSignupForm.valid)? 'Enter all fields' : ''">Sign Up</button>
                         <button class="btn btn-primary btn-lg" data-dismiss="modal">Cancel</button>
@@ -118,6 +120,85 @@
     </div>
 </div>
 
+<!-- AnyButGuest Signup -->
+<div class="container">
+    <!-- Modal -->
+    <div class="modal fade" id="signup" role="dialog">
+        <div class="modal-dialog modal-dialog-centered">
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">{{user}} Signup</h4>
+                    <button class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <form [formGroup]="formsService.signupForm">
+                    <div class="modal-body">
+                        <div class="sign-up signup-form signup-form-modal">
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control" name="firstname" placeholder="First Name"
+                                        formControlName="firstName">
+                                    <input type="text" class="form-control" name="lastname" placeholder="Last Name"
+                                        formControlName="lastName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-user"></i></span>
+                                    <input type="text" class="form-control" name="displayname"
+                                        placeholder="Display Name" formControlName="displayName">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-paper-plane"></i></span>
+                                    <input type="email" class="form-control" name="email" placeholder="Email Address"
+                                        formControlName="email">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon"><i class="fa fa-lock"></i></span>
+                                    <input type="password" class="form-control" name="password" placeholder="Password"
+                                        formControlName="password">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="input-group">
+                                    <span class="input-group-addon">
+                                        <i class="fa fa-lock"></i>
+                                        <i class="fa fa-check"></i>
+                                    </span>
+                                    <input type="password" class="form-control" name="confirm_password"
+                                        placeholder="Confirm Password" formControlName="confirmPassword">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-inline"><input type="checkbox" formControlName="terms"> I accept
+                                    the <a href="#" data-toggle="modal" data-target="#policy">Terms of
+                                        Use &amp; Privacy Policy</a></label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="form-group">
+                            <button class="btn btn-primary btn-lg"
+                                (click)="signUpService.basicEmailSignup(profile,confirmPassword)"
+                                [disabled]="!formsService.signupForm.valid" data-toggle="tooltip" data-placement="top"
+                                [title]="(!formsService.signupForm.valid)? 'Enter all fields' : ''">Sign
+                                Up</button>
+                            <button class="btn btn-primary btn-lg" data-dismiss="modal">Cancel</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- Terms and Conditions -->
 <div class="container">
     <!-- Modal -->
     <div class="modal fade" id="policy" role="dialog">
@@ -549,7 +630,7 @@
                     <h1>Contact Us</h1>
                     <p>If you have any questions about this Privacy Policy, You can contact us:</p>
                     <ul>
-                        <li>By email: talk2lurisan@gmail.com</li>
+                        <li>By email: dr.assistant.web@gmail.com</li>
                     </ul>
                 </div>
                 <div class="modal-footer">
@@ -561,10 +642,12 @@
     </div>
 </div>
 
+<!-- Error Modal -->
 <div *ngIf="onError">
     <app-error-message [error]="errorMessage" (closeBtn)="onError = false"></app-error-message>
 </div>
 
+<!-- Loader Modal -->
 <div *ngIf="loader">
     <app-loader></app-loader>
 </div>
