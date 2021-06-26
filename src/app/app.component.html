@@ -3,6 +3,9 @@
         <img src="assets/consultation.svg" style="margin: 10px;" width="40" height="40" alt="Prescription">
         <span>Dr. Assistant</span>
     </div>
+    <div class="logout" *ngIf="isLoggedIn" (click)="logout()" [routerLink]="['/']">
+        <span>Logout</span>
+    </div>
 </div>
 <div style="margin-top: 60px;">
     <router-outlet></router-outlet>

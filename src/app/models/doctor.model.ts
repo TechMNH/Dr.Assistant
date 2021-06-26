@@ -1,4 +1,4 @@
-import { IdentificationDetails, Rating, UniqueId } from "./common.model";
+import { IdentificationDetails, Ratings, UniqueId } from "./common.model";
 
 export class DoctorDegree {
     degreeName: string = null;
@@ -17,12 +17,12 @@ export class DoctorProfile {
     yearsOfExperience: number = null;
     bio: string = null;
     consultationsGiven: number = null;
-    rating: Rating = new Rating();
+    rating: Ratings = new Ratings();
     consultationFees: number = null;
     verifiedProfile: boolean = false;
 }
 
 export class DoctorIdentifier {
-    uid: UniqueId = new UniqueId();
+    uid: UniqueId = new UniqueId('doc');
     doctorName: string = null;
 }

@@ -41,37 +41,53 @@ export class SignupService {
     if (profile.password.password == confirmPassword) {
       const password: string = profile.password.password;
       const email: string = profile.email;
-      this.fireAuthService.BasicSignUp(email, password).then(data => {
-        if (passwordStrength) {
-          profile.password.strength = Constants.PASSWORD_STRENGTH_STRONG;
-        } else {
-          this.errorService.error = {
-            title: Constants.ERROR_TITLE_PASSWORD,
-            message: `${Constants.ERROR_MESSAGE_PASSWORD_STRENGTH} ${Constants.PASSWORD_STRENGTH_WEAK}`
+      if (email && password) {
+        this.fireAuthService.BasicSignUp(email, password).then(data => {
+          if (passwordStrength) {
+            profile.password.strength = Constants.PASSWORD_STRENGTH_STRONG;
+          } else {
+            this.errorService.error = {
+              title: Constants.ERROR_TITLE_PASSWORD,
+              message: `${Constants.ERROR_MESSAGE_PASSWORD_STRENGTH} ${Constants.PASSWORD_STRENGTH_WEAK}`
+            }
           }
-        }
-        profile.uid.id = data.user.uid;
-        profile.uid.type = Constants.USER_TYPE_GUEST;
-        profile.password.lastChanged = new Date();
-        this.dataService.guestProfile = profile;
-        this.dataService.userType = Constants.USER_TYPE_GUEST;
-        this.fireDatabase.createNewGuestUser(profile).then(() => {
-          this.loggerService.log(`${data.user.uid}-added to database as guest`, Constants.LOG_LEVEL_INFO);
+          profile.uid.id = data.user.uid;
+          profile.uid.type = Constants.USER_TYPE_GUEST;
+          profile.password.lastChanged = new Date();
+          this.dataService.guestProfile = profile;
+          this.dataService.userType = Constants.USER_TYPE_GUEST;
+          this.fireDatabase.createNewGuestUser(profile).then(() => {
+            this.loggerService.log(`${data.user.uid}-added to database as guest`, Constants.LOG_LEVEL_INFO);
+          }).catch(err => {
+            this.errorService.error = {
+              title: Constants.ERROR_TITLE_SIGNUP,
+              message: `${data.user.uid}-${Constants.ERROR_MESSAGE_SIGNUP_DATABASE}`,
+              hideDialog: true
+            }
+            this.loggerService.log(err, Constants.LOG_LEVEL_ERROR);
+          });
+          this.navigateByUrl(Constants.GUEST_DASHBOARD);
         }).catch(err => {
           this.errorService.error = {
             title: Constants.ERROR_TITLE_SIGNUP,
-            message: `${data.user.uid}-${Constants.ERROR_MESSAGE_SIGNUP_DATABASE}`,
-            hideDialog: true
+            message: err.message
           }
-          this.loggerService.log(err, Constants.LOG_LEVEL_ERROR);
         });
-        this.navigateByUrl(Constants.GUEST_DASHBOARD);
-      }).catch(err => {
+      } else if (!email)
         this.errorService.error = {
-          title: Constants.ERROR_TITLE_SIGNUP,
-          message: err.message
-        }
-      });
+          title: Constants.ERROR_TITLE_DATA_ENTRY,
+          message: `${Constants.ERROR_MESSAGE_DATA_ENTRY.message} ${Constants.ERROR_MESSAGE_DATA_ENTRY.email}`
+        };
+      else if (!password)
+        this.errorService.error = {
+          title: Constants.ERROR_TITLE_DATA_ENTRY,
+          message: `${Constants.ERROR_MESSAGE_DATA_ENTRY.message} ${Constants.ERROR_MESSAGE_DATA_ENTRY.password}`
+        };
+      else
+        this.errorService.error = {
+          title: Constants.ERROR_TITLE_DATA_ENTRY,
+          message: `${Constants.ERROR_MESSAGE_DATA_ENTRY.message} ${Constants.ERROR_MESSAGE_DATA_ENTRY.emailAndPassword}`
+        };
     } else
       this.errorService.error = {
         title: Constants.ERROR_TITLE_PASSWORD,
@@ -85,49 +101,65 @@ export class SignupService {
     if (profile.identificationDetails.password.password == confirmPassword) {
       const password: string = profile.identificationDetails.password.password;
       const email: string = profile.identificationDetails.email;
-      this.fireAuthService.BasicSignUp(email, password).then(data => {
-        if (passwordStrength) {
-          profile.identificationDetails.password.strength = Constants.PASSWORD_STRENGTH_STRONG;
-        } else {
-          this.errorService.error = {
-            title: Constants.ERROR_TITLE_PASSWORD,
-            message: `${Constants.ERROR_MESSAGE_PASSWORD_STRENGTH} ${Constants.PASSWORD_STRENGTH_WEAK}`
+      if (email && password) {
+        this.fireAuthService.BasicSignUp(email, password).then(data => {
+          if (passwordStrength) {
+            profile.identificationDetails.password.strength = Constants.PASSWORD_STRENGTH_STRONG;
+          } else {
+            this.errorService.error = {
+              title: Constants.ERROR_TITLE_PASSWORD,
+              message: `${Constants.ERROR_MESSAGE_PASSWORD_STRENGTH} ${Constants.PASSWORD_STRENGTH_WEAK}`
+            }
           }
-        }
-        profile.identificationDetails.uid.id = data.user.uid;
-        profile.identificationDetails.password.lastChanged = new Date();
-        if (profile.identificationDetails.uid.type == 'admin') {
-          this.loaderService.loader = false;
-          this.dataService.adminProfile = profile as AdminProfile;
-          this.dataService.userType = Constants.USER_TYPE_ADMIN;
-          this.navigateByUrl(Constants.ADMIN_DASHBOARD);
-        } else if (profile.identificationDetails.uid.type == 'doc') {
-          this.loaderService.loader = false;
-          this.dataService.doctorProfile = profile as DoctorProfile;
-          this.dataService.userType = Constants.USER_TYPE_DOCTOR;
-          this.navigateByUrl(Constants.DOCTOR_DASHBOARD);
-        } else if (profile.identificationDetails.uid.type == 'pat') {
-          this.loaderService.loader = false;
-          this.dataService.patientProfile = profile as PatientProfile;
-          this.dataService.userType = Constants.USER_TYPE_PATIENT;
-          this.navigateByUrl(Constants.PATIENT_DASHBOARD);
-        }
-        this.fireDatabase.createNewUser(profile).then(() => {
-          this.loggerService.log(`${data.user.uid}-added to database as ${this.dataService.userType}`, Constants.LOG_LEVEL_INFO);
+          profile.identificationDetails.uid.id = data.user.uid;
+          profile.identificationDetails.password.lastChanged = new Date();
+          if (profile.identificationDetails.uid.type == 'admin') {
+            this.loaderService.loader = false;
+            this.dataService.adminProfile = profile as AdminProfile;
+            this.dataService.userType = Constants.USER_TYPE_ADMIN;
+            this.navigateByUrl(Constants.ADMIN_DASHBOARD);
+          } else if (profile.identificationDetails.uid.type == 'doc') {
+            this.loaderService.loader = false;
+            this.dataService.doctorProfile = profile as DoctorProfile;
+            this.dataService.userType = Constants.USER_TYPE_DOCTOR;
+            this.navigateByUrl(Constants.DOCTOR_DASHBOARD);
+          } else if (profile.identificationDetails.uid.type == 'pat') {
+            this.loaderService.loader = false;
+            this.dataService.patientProfile = profile as PatientProfile;
+            this.dataService.userType = Constants.USER_TYPE_PATIENT;
+            this.navigateByUrl(Constants.PATIENT_DASHBOARD);
+          }
+          this.fireDatabase.createNewUser(profile).then(() => {
+            this.loggerService.log(`${data.user.uid}-added to database as ${this.dataService.userType}`, Constants.LOG_LEVEL_INFO);
+          }).catch(err => {
+            this.errorService.error = {
+              title: Constants.ERROR_TITLE_SIGNUP,
+              message: `${data.user.uid}-${Constants.ERROR_MESSAGE_SIGNUP_DATABASE}`,
+              hideDialog: true
+            }
+            this.loggerService.log(err, Constants.LOG_LEVEL_ERROR);
+          });
         }).catch(err => {
           this.errorService.error = {
             title: Constants.ERROR_TITLE_SIGNUP,
-            message: `${data.user.uid}-${Constants.ERROR_MESSAGE_SIGNUP_DATABASE}`,
-            hideDialog: true
+            message: err.message
           }
-          this.loggerService.log(err, Constants.LOG_LEVEL_ERROR);
         });
-      }).catch(err => {
+      } else if (!email)
         this.errorService.error = {
-          title: Constants.ERROR_TITLE_SIGNUP,
-          message: err.message
-        }
-      });
+          title: Constants.ERROR_TITLE_DATA_ENTRY,
+          message: `${Constants.ERROR_MESSAGE_DATA_ENTRY.message} ${Constants.ERROR_MESSAGE_DATA_ENTRY.email}`
+        };
+      else if (!password)
+        this.errorService.error = {
+          title: Constants.ERROR_TITLE_DATA_ENTRY,
+          message: `${Constants.ERROR_MESSAGE_DATA_ENTRY.message} ${Constants.ERROR_MESSAGE_DATA_ENTRY.password}`
+        };
+      else
+        this.errorService.error = {
+          title: Constants.ERROR_TITLE_DATA_ENTRY,
+          message: `${Constants.ERROR_MESSAGE_DATA_ENTRY.message} ${Constants.ERROR_MESSAGE_DATA_ENTRY.emailAndPassword}`
+        };
     } else
       this.errorService.error = {
         title: Constants.ERROR_TITLE_PASSWORD,

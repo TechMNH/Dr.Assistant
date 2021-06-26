@@ -1,4 +1,4 @@
-export type UserTypes = 'doc' | 'pat' | 'admin' | 'super-admin' | 'guest';
+export type UserTypes = 'doc' | 'pat' | 'admin' | 'guest';
 
 export class UniqueId {
     constructor(type: UserTypes = 'pat') {
@@ -26,16 +26,20 @@ export class Password {
     resetRequired: boolean = false;
     compromised: boolean = false;
     strength: PasswordStrength = 'weak';
-    lastChanged: Date = null;
+    lastChanged: Date = new Date();
 }
 
-export class Rating {
+export class Ratings {
     star1: number = null;
     star2: number = null;
     star3: number = null;
     star4: number = null;
     star5: number = null;
     averageStar: 1 | 2 | 3 | 4 | 5 = null;
+}
+
+export class Rating {
+    star: 1 | 2 | 3 | 4 | 5 = null;
 }
 
 export class IdentificationDetails {
@@ -45,7 +49,6 @@ export class IdentificationDetails {
     uid: UniqueId = null;
     email: string = null;
     displayName: string = null;
-    // username: string = null;
     emailVerified: boolean;
     firstName: string = null;
     middleName: string = null;
@@ -56,4 +59,11 @@ export class IdentificationDetails {
     password: Password = new Password();
     privateProfile: boolean = false;
     photoId: string = null;
+}
+
+export class Complaint {
+    adminId: UniqueId = new UniqueId('admin');
+    doctorId: UniqueId = new UniqueId('doc');
+    patientId: UniqueId = new UniqueId('pat');
+    message: string = null;
 }

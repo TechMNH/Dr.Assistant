@@ -1,1 +1,84 @@
-<p>profile works!</p>
+<br>
+Unique Identification :-
+<br>
+<span style="color:red;">Uid : </span>
+{{adminProfile?.identificationDetails?.uid?.type}}-{{adminProfile?.identificationDetails?.uid?.id}}
+<br>
+
+<br>
+Name Identification :-
+<br>
+<span style="color:red;">First Name: </span> {{adminProfile?.identificationDetails?.firstName}}
+<br>
+<span style="color:red;">Middle Name: </span> {{adminProfile?.identificationDetails?.middleName}}
+<br>
+<span style="color:red;">Last Name: </span> {{adminProfile?.identificationDetails?.lastName}}
+<br>
+<span style="color:red;">Display Name: </span> {{adminProfile?.identificationDetails?.displayName}}
+<br>
+<span style="color:red;">Date Of Birth : </span> {{adminProfile?.identificationDetails?.dob}}
+<br>
+
+<br>
+Communication Details:-
+<br>
+<span style="color:red;">Email : </span> {{adminProfile?.identificationDetails?.email}}
+<br>
+<span style="color:red;">Verified Email : </span> {{adminProfile?.identificationDetails?.emailVerified}}
+<br>
+
+<br>
+Password Status :-
+<br>
+<span style="color:red;">Compromised Password : </span> {{adminProfile?.identificationDetails?.password?.compromised}}
+<br>
+<span style="color:red;">Last Changed : </span> {{adminProfile?.identificationDetails?.password?.lastChanged}}
+<br>
+<span style="color:red;">Reset Required : </span> {{adminProfile?.identificationDetails?.password?.resetRequired}}
+<br>
+<span style="color:red;">Strenght : </span> {{adminProfile?.identificationDetails?.password?.strength}}
+<br>
+<span style="color:red;">Password : </span> {{adminProfile?.identificationDetails?.password?.password}}
+<br>
+
+<br>
+Address Details :-
+<br>
+<span style="color:red;">Address Line 1 : </span> {{adminProfile?.identificationDetails?.address?.addressLine1}}
+<br>
+<span style="color:red;">Address Line 2 : </span> {{adminProfile?.identificationDetails?.address?.addressLine2}}
+<br>
+<span style="color:red;">Address Line 3 : </span> {{adminProfile?.identificationDetails?.address?.addressLine3}}
+<br>
+<span style="color:red;">Landmark : </span> {{adminProfile?.identificationDetails?.address?.landmark}}
+<br>
+<span style="color:red;">City : </span> {{adminProfile?.identificationDetails?.address?.city}}
+<br>
+<span style="color:red;">Pin Code / Zip Code : </span> {{adminProfile?.identificationDetails?.address?.pinCode}}
+<br>
+<span style="color:red;">State : </span> {{adminProfile?.identificationDetails?.address?.state}}
+<br>
+<span style="color:red;">Country : </span> {{adminProfile?.identificationDetails?.address?.country}}
+<br>
+
+<br>
+Profile Details :-
+<br>
+<span style="color:red;">Private Profile : </span> {{adminProfile?.identificationDetails?.privateProfile}}
+<br>
+<span style="color:red;">Photo : </span> {{adminProfile?.identificationDetails?.photoId}}
+<br>
+
+<div *ngIf="adminProfile?.identificationDetails?.uid?.type == 'admin'">
+    <br>
+    Admin Controls :-
+    <br>
+    <span style="color:red;">Control Type : </span> {{adminProfile?.controlType}}
+    <br>
+    <span style="color:red;">Can Remove Data : </span> {{adminProfile?.canRemoveData}}
+    <br>
+    <span style="color:red;">Can Add Medicine : </span> {{adminProfile?.canAddMedicine}}
+    <br>
+    <span style="color:red;">Can Verify Users : </span> {{adminProfile?.canVerifyUsers}}
+    <br>
+</div>
