@@ -13,13 +13,14 @@ export class AppComponent implements OnInit {
   constructor(private authService: FireAuthService, private dataService: DataService) { }
 
   ngOnInit() {
-    this.authService.isLoggedIn.subscribe(status => {
-      this.isLoggedIn = status.loggedIn;
-      console.log(status);
+    this.authService.loggedInAsObservable.subscribe(status => {
+      if (status)
+        this.isLoggedIn = status.loggedIn;
     });
   }
 
   logout() {
     this.dataService.resetProfile;
+    this.authService.loggedIn = { loggedIn: false, type: null }
   }
 }
