@@ -1,20 +1,20 @@
-git clone <URL>                                                                 to get the clone of a repo to a particular folder
-git checkout <branch_name>                                                      to get the most recent commit from the branch
-git checkout tags/<tag_name>                                                    to get checkout at a specific tag from the repo
-git checkout -b <branch_name>							                        to create and checkout to a new branch just created
-git log --name-only --oneline --grep="<match string>"                           to get the committed files by a given string in comments/message
-git push                                                                        to push the commits to the server    
-git push --set-upstream <branch_name>                                           to set default remote branch for the local branch
-git pull                                                                        to pull the commits from the server
-git add .                                                                       to stage files for commit
-git commit                                                                      to commit files to the local before pushing to the server
-git branch -d <branch_name>                                                     to delete local branch
-git push origin --delete <branch_name>                                          to delete remote branch
-git stash save                                                                  to stash current changes
-git stash pop                                                                   to apply stashed changes
-git log --tags --name-only --oneline --grep="<match string>"                    to get the committed files by a given string in tag name
-git clone --single-branch --branch <branch_name> <remote-repo>                  to clone a specific branch from remote
-
+git clone <URL>                                                                                             to get the clone of a repo to a particular folder
+git checkout <branch_name>                                                                                  to get the most recent commit from the branch
+git checkout tags/<tag_name>                                                                                to get checkout at a specific tag from the repo
+git checkout -b <branch_name>							                                                    to create and checkout to a new branch just created
+git log --name-only --oneline --grep="<match string>"                                                       to get the committed files by a given string in comments/message
+git push                                                                                                    to push the commits to the server    
+git push --set-upstream <branch_name>                                                                       to set default remote branch for the local branch
+git pull                                                                                                    to pull the commits from the server
+git add .                                                                                                   to stage files for commit
+git commit                                                                                                  to commit files to the local before pushing to the server
+git branch -d <branch_name>                                                                                 to delete local branch
+git push origin --delete <branch_name>                                                                      to delete remote branch
+git stash save                                                                                              to stash current changes
+git stash pop                                                                                               to apply stashed changes
+git log --tags --name-only --oneline --grep="<match string>"                                                to get the committed files by a given string in tag name
+git clone --single-branch --branch <branch_name> <remote-repo>                                              to clone a specific branch from remote
+git branch --merged <name of main branch> | grep -v '^[ *]*<name of main branch>$' | xargs git branch -d    to delete local branches which are merged to master
 
 reset the Repository with all history deleted:-
     git checkout <first commit hash>
